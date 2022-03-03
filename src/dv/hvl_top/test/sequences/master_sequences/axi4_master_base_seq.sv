@@ -8,7 +8,7 @@
 class axi4_master_base_seq extends uvm_sequence#(axi4_master_tx);
   `uvm_object_utils(axi4_master_base_seq)
 
-  `uvm_declare_p_sequencer(axi4_master_sequencer) 
+  //`uvm_declare_p_sequencer(axi4_master_sequencer) 
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -37,9 +37,9 @@ endfunction : new
 task axi4_master_base_seq::body();
 
   //dynamic casting of p_sequencer and m_sequencer
-  if(!$cast(p_sequencer,m_sequencer))begin
-    `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
-  end
+  //if(!$cast(p_sequencer,m_sequencer))begin
+  //  `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
+  //end
             
 endtask:body
 `endif

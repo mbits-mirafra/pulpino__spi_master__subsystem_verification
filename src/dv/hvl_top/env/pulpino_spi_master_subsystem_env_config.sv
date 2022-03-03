@@ -30,7 +30,7 @@ class pulpino_spi_master_subsystem_env_config extends uvm_object;
 
   // Variable: spi_master_reg_block
   // Registers block handle for spi master module
-  //spi_master_axi4_if spi_master_reg_block;
+  spi_master_apb_if spi_master_reg_block;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions

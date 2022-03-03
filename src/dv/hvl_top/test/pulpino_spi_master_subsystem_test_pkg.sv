@@ -17,8 +17,8 @@ package pulpino_spi_master_subsystem_test_pkg;
   //-------------------------------------------------------
   // Importing the required packages
   //-------------------------------------------------------
-  import axi4_global_pkg::*;
-  import spi_global_pkg::*;
+  import axi4_globals_pkg::*;
+  import spi_globals_pkg::*;
   import axi4_master_pkg::*;
   import spi_slave_pkg::*;
   import pulpino_spi_master_subsystem_env_pkg::*;

@@ -11,7 +11,7 @@ package axi4_master_seq_pkg;
   // Importing UVM Pkg
   //-------------------------------------------------------
   `include "uvm_macros.svh"
-  import axi4_master_global_pkg::*;
+  import axi4_globals_pkg::*;
   import uvm_pkg::*;
   import axi4_master_pkg::*;
 

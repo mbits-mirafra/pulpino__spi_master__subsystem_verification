@@ -11,8 +11,8 @@ package axi4_reg_seq_pkg;
   // Importing UVM Pkg
   //-------------------------------------------------------
   `include "uvm_macros.svh"
-  import axi4_master_global_pkg::*;
-  import spi_slave_global_pkg::*;
+  import axi4_globals_pkg::*;
+  import spi_globals_pkg::*;
   import uvm_pkg::*;
   //import axi4_master_pkg::*;
   import spi_master_defines_pkg::*;

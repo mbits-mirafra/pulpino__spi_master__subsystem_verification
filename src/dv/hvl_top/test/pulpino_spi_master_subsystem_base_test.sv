@@ -20,7 +20,7 @@ class pulpino_spi_master_subsystem_base_test extends uvm_test;
 
   // Variable: spi_master_reg_block
   // Registers block for spi master module
-  spi_master_axi4_if spi_master_reg_block;
+  spi_master_apb_if spi_master_reg_block;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -89,7 +89,7 @@ function void pulpino_spi_master_subsystem_base_test::setup_pulpino_spi_master_s
   begin
     uvm_reg::include_coverage("*",UVM_CVR_ALL);
 
-    spi_master_reg_block = spi_master_axi4_if::type_id::create("spi_master_reg_block");
+    spi_master_reg_block = spi_master_apb_if::type_id::create("spi_master_reg_block");
     spi_master_reg_block.build();
 
     // Enables sampling of coverage
@@ -98,8 +98,8 @@ function void pulpino_spi_master_subsystem_base_test::setup_pulpino_spi_master_s
     spi_master_reg_block.lock_model();
   end
 
-
   pulpino_spi_master_subsystem_env_cfg_h.spi_master_reg_block = this.spi_master_reg_block;
+
 endfunction : setup_pulpino_spi_master_subsystem_env_config
 
 //--------------------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ function void pulpino_spi_master_subsystem_base_test::setup_axi4_master_agent_co
   else begin
     pulpino_spi_master_subsystem_env_cfg_h.axi4_master_agent_cfg_h.is_active    = uvm_active_passive_enum'(UVM_PASSIVE);
   end
-  pulpino_spi_master_subsystem_env_cfg_h.axi4_master_agent_cfg_h.no_of_slaves   = 1;
+  pulpino_spi_master_subsystem_env_cfg_h.no_of_spi_slaves   = 1;
   pulpino_spi_master_subsystem_env_cfg_h.axi4_master_agent_cfg_h.has_coverage   = 1;
 
 
