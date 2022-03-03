@@ -1,23 +1,25 @@
-`ifndef SLAVE_TX_INCLUDED_
-`define SLAVE_TX_INCLUDED_
+`ifndef SPI_SLAVE_TX_INCLUDED_
+`define SPI_SLAVE_TX_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-//  Class: slave_tx
+//  Class: spi_slave_tx
 //  It's a transaction class that holds the SPI data items for generating the stimulus
 //--------------------------------------------------------------------------------------------
-class slave_tx extends uvm_sequence_item;
-  `uvm_object_utils(slave_tx)
+class spi_slave_tx extends uvm_sequence_item;
+  `uvm_object_utils(spi_slave_tx)
 
   //-------------------------------------------------------
   // Instantiating SPI signals
   //-------------------------------------------------------
-  // TODO(mshariff): Not required
-  bit cs;
-
-  //input signals
   rand bit [CHAR_LENGTH-1:0]master_in_slave_out[];
 
   bit [CHAR_LENGTH-1:0] master_out_slave_in[];
+
+//  rand bit [CHAR_LENGTH/2-1:0]miso0[];
+//  rand bit [CHAR_LENGTH/2-1:0]miso1[];
+//       bit [CHAR_LENGTH/2-1:0]mosi0[];
+//       bit [CHAR_LENGTH/2-1:0]mosi1[];
+
 
   //--------------------------------------------------------------------------------------------
   // Constraints for SPI
@@ -26,30 +28,34 @@ class slave_tx extends uvm_sequence_item;
   constraint miso_c { master_in_slave_out.size() > 0 ;
                       master_in_slave_out.size() < MAXIMUM_BITS/CHAR_LENGTH;}
 
-  constraint max_bits_miso{foreach(master_in_slave_out[i])
-                                    master_in_slave_out[i]%8 ==0;}
+//  constraint max_bits_miso{foreach(master_in_slave_out[i])
+//                                    master_in_slave_out[i]%8 ==0;}
+//  constraint dual_spi_bits_even{foreach(miso0[i])
+//                              miso0[i]%2==0;}
+//  constraint dual_spi_bits_odd{foreach(miso1[i])
+//                              miso1[i]%2!=0;}
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
-  extern function new(string name = "slave_tx");
+  extern function new(string name = "spi_slave_tx");
   extern function void do_copy(uvm_object rhs);
   extern function bit do_compare(uvm_object rhs, uvm_comparer comparer);
   extern function void do_print(uvm_printer printer);
 
-endclass : slave_tx
+endclass : spi_slave_tx
 
 //--------------------------------------------------------------------------------------------
 //  Construct: new
 //  initializes the class object
 //  Parameters: 
-//  instance name of the slave template
-//  Constructs the slave_tx object
+//  instance name of the spi_slave template
+//  Constructs the spi_slave_tx object
 //  
 //  Parameters:
-//  name - slave_tx
+//  name - spi_slave_tx
 //--------------------------------------------------------------------------------------------
-function slave_tx::new(string name = "slave_tx");
+function spi_slave_tx::new(string name = "spi_slave_tx");
   super.new(name);  
 endfunction : new
 
@@ -57,8 +63,8 @@ endfunction : new
 //do_copy method
 //--------------------------------------------------------------------------------------------
 
-function void slave_tx::do_copy (uvm_object rhs);
-  slave_tx rhs_;
+function void spi_slave_tx::do_copy (uvm_object rhs);
+  spi_slave_tx rhs_;
 
   if(!$cast(rhs_,rhs)) begin
     `uvm_fatal("do_copy","cast of the rhs object failed")
@@ -75,8 +81,8 @@ endfunction : do_copy
  //-------------------------------------------------------
  //  do_compare method
  //-------------------------------------------------------
-function bit slave_tx::do_compare (uvm_object rhs,uvm_comparer comparer);
-  slave_tx rhs_;
+function bit spi_slave_tx::do_compare (uvm_object rhs,uvm_comparer comparer);
+  spi_slave_tx rhs_;
   if(!$cast(rhs_,rhs)) begin
     `uvm_fatal("do_compare","cast of the rhs object failed")
      return 0;
@@ -92,7 +98,7 @@ endfunction : do_compare
 // Function: do_print method
 // Print method can be added to display the data members values
 //--------------------------------------------------------------------------------------------
-function void slave_tx::do_print(uvm_printer printer);
+function void spi_slave_tx::do_print(uvm_printer printer);
   super.do_print(printer);
   foreach(master_in_slave_out[i]) begin
     printer.print_field($sformatf("master_in_slave_out[%0d]",i),this.master_in_slave_out[i],8,UVM_HEX);
@@ -100,6 +106,18 @@ function void slave_tx::do_print(uvm_printer printer);
   foreach(master_out_slave_in[i]) begin
     printer.print_field($sformatf("master_out_slave_in[%0d]",i),this.master_out_slave_in[i],8,UVM_HEX);
   end
+//  foreach(miso0[i]) begin
+//    printer.print_field($sformatf("miso0[%0d]",i),this.miso0[i],4,UVM_HEX);
+//  end
+//  foreach(miso1[i]) begin
+//    printer.print_field($sformatf("miso1[%0d]",i),this.miso1[i],4,UVM_HEX);
+//  end
+//  foreach(mosi0[i]) begin
+//    printer.print_field($sformatf("mosi0[%0d]",i),this.mosi0[i],4,UVM_HEX);
+//  end
+//  foreach(mosi1[i]) begin
+//    printer.print_field($sformatf("mosi1[%0d]",i),this.mosi1[i],4,UVM_HEX);
+//  end
 
 endfunction : do_print
 

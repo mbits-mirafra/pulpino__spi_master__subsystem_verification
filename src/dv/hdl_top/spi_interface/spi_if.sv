@@ -2,7 +2,7 @@
 `define SPI_IF_INCLUDED_
 
 // Import spi_globals_pkg 
-import spi_slave_global_pkg::*;
+import spi_globals_pkg::*;
 
 //--------------------------------------------------------------------------------------------
 // Interface : spi_if

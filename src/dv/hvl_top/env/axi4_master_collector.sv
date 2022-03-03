@@ -56,8 +56,6 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 function void axi4_master_collector::write(axi4_master_tx t);
 
-  `uvm_info(get_type_name(), $sformatf("rg_name = %0s", rg.get_name()),UVM_HIGH)
-
 endfunction : write
 
 `endif

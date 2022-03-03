@@ -25,8 +25,8 @@
 #../../src/dv/hvl_top/test/virtual_sequences/pulpino_spi_master_subsystem_virtual_seq_pkg.sv
 #../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv
 ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv
-../../src/dv/hdl_top/axi4_if/axi4_if.sv
-../../src/dv/hdl_top/spi_if/spi_if.sv
+../../src/dv/hdl_top/axi4_interface/axi4_if.sv
+../../src/dv/hdl_top/spi_interface/spi_if.sv
 ../../src/dv/hdl_top/axi4_master_agent_bfm/axi4_master_agent_bfm.sv
 ../../src/dv/hdl_top/axi4_master_agent_bfm/axi4_master_driver_bfm.sv
 ../../src/dv/hdl_top/axi4_master_agent_bfm/axi4_master_monitor_bfm.sv
