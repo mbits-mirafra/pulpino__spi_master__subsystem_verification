@@ -1,5 +1,5 @@
 `ifndef PULPINO_SPI_MASTER_SUBSYSTEM_BASE_TEST_INCLUDED_
-`define PULPINO_SPI_MASTER_SUBBSYSTEM_BASE_TEST_INCLUDED_
+`define PULPINO_SPI_MASTER_SUBSYSTEM_BASE_TEST_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
 // Class: pulpino_spi_master_subsystem_base_test
