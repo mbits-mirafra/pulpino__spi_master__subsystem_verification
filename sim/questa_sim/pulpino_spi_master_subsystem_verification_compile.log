@@ -1,0 +1,54 @@
+QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
+Start time: 17:02:28 on Mar 03,2022
+vlog -sv "+acc" "+cover" "+fcover" -l pulpino_spi_master_subsystem_verification_compile.log -f ../rtl_compile.f -f ../verif_compile.f 
+-- Compiling package config_pkg
+-- Compiling package apb_bus_sv_unit
+-- Importing package config_pkg
+-- Compiling interface APB_BUS
+-- Compiling package axi_bus_sv_unit
+-- Importing package config_pkg
+-- Compiling interface AXI_BUS
+-- Compiling module apb_spi_master
+-- Compiling module spi_master_apb_if
+-- Compiling module spi_master_clkgen
+-- Compiling module spi_master_controller
+-- Compiling module spi_master_fifo
+-- Compiling module spi_master_rx
+-- Compiling module spi_master_tx
+-- Compiling module periph_bus_wrap
+-- Compiling module subsystem_top
+-- Compiling package axi4_globals_pkg
+-- Compiling package spi_globals_pkg
+-- Compiling package pulpino_spi_master_subsystem_global_pkg
+-- Compiling package axi4_master_pkg
+** Note: (vlog-2286) ../../src/dv/hvl_top/axi4_master_agent/axi4_master_pkg.sv(13): Using implicit +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package axi4_globals_pkg
+-- Compiling package spi_slave_pkg
+-- Importing package spi_globals_pkg
+-- Compiling package spi_master_defines_pkg
+-- Compiling package spi_master_uvm_pkg
+-- Compiling package pulpino_spi_master_subsystem_env_pkg
+-- Importing package pulpino_spi_master_subsystem_global_pkg
+-- Importing package axi4_master_pkg
+-- Importing package spi_slave_pkg
+-- Importing package spi_master_defines_pkg
+-- Importing package spi_master_uvm_pkg
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(30)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_env_config.sv(33): Invalid type 'spi_master_axi4_if'. Please check the type of the variable 'spi_master_reg_block'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(32)
+** at ../../src/dv/hvl_top/env/virtual_sequencer//pulpino_spi_master_subsystem_virtual_sequencer.sv(13): Invalid type 'axi4_master_sequencer'. Please check the type of the variable 'axi4_master_seqr_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(32)
+** at ../../src/dv/hvl_top/env/virtual_sequencer//pulpino_spi_master_subsystem_virtual_sequencer.sv(17): Invalid type 'spi_slave_sequencer'. Please check the type of the variable 'spi_slave_seqr_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(33)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_scoreboard.sv(15): Invalid type 'spi_slave_tx'. Please check the type of the variable 'spi_slave_tx_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(33)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_scoreboard.sv(23): (vlog-2730) Undefined variable: 'spi_slave_tx'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(35)
+** at ../../src/dv/hvl_top/env//spi_slave_collector.sv(11): (vlog-2730) Undefined variable: 'spi_slave_tx'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(35)
+** at ../../src/dv/hvl_top/env//spi_slave_collector.sv(19): (vlog-2400) Identifier ('spi_slave_tx') found where a type or type identifier is required.
+** Error: (vlog-7) Failed to open design unit file "../../src/dv/hdl_top/axi4_if/axi4_if.sv" in read mode.
+No such file or directory. (errno = ENOENT)
+End time: 17:02:29 on Mar 03,2022, Elapsed time: 0:00:01
+Errors: 8, Warnings: 0

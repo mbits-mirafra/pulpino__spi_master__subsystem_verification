@@ -1,13 +1,13 @@
 `ifndef SLAVE_MONITOR_BFM_INCLUDED_
 `define SLAVE_MONITOR_BFM_INCLUDED_
 
+import spi_globals_pkg::*;
+
 //--------------------------------------------------------------------------------------------
 // Inteface : Slave Monitor BFM
 // Connects the slave monitor bfm with the monitor proxy
 // to call the tasks and functions from monitor bfm to monitor proxy
 //--------------------------------------------------------------------------------------------
-
-import spi_globals_pkg::*;
 interface slave_monitor_bfm(input pclk, input areset, 
                             input sclk, 
                             input cs, 
