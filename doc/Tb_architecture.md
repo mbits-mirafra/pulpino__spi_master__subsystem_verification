@@ -1,1 +1,1 @@
-[Tb_architecture](https://drive.google.com/file/d/1iacPCmZaJ3r3EpKoNoKxubaN334eR0m0/view?usp=sharing)
+[Tb_architecture](https://drive.google.com/drive/folders/1W1tM_kQZLRY2Qp2vj_A2u-9_pExZCpnR)
