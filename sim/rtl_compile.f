@@ -4,15 +4,15 @@
 ../../src/rtl/includes/axi_bus.sv
 
 +incdir+../../src/rtl/axi2apb
-../../src/rtl/axi2apb/AXI_2_APB.sv
-../../src/rtl/axi2apb/AXI_2_APB_32.sv
-../../src/rtl/axi2apb/axi2apb.sv
-../../src/rtl/axi2apb/axi2apb32.sv
-../../src/rtl/axi2apb/axi2apb_wrap.sv
+#../../src/rtl/axi2apb/AXI_2_APB.sv
+#../../src/rtl/axi2apb/AXI_2_APB_32.sv
+#../../src/rtl/axi2apb/axi2apb.sv
+#../../src/rtl/axi2apb/axi2apb32.sv
+#../../src/rtl/axi2apb/axi2apb_wrap.sv
 
 +incdir+../../src/rtl/apb_node
-../../src/rtl/apb_node/apb_node.sv
-../../src/rtl/apb_node/apb_node_wrap.sv
+#../../src/rtl/apb_node/apb_node.sv
+#../../src/rtl/apb_node/apb_node_wrap.sv
 
 +incdir+../../src/rtl/peripherals
 +incdir+../../src/rtl/peripherals/spi_master
@@ -25,5 +25,5 @@
 ../../src/rtl/peripherals/spi_master/spi_master_tx.sv
 ../../src/rtl/peripherals/periph_bus_wrap.sv
 
-../../src/rtl/subsystem_top.sv
+#../../src/rtl/subsystem_top.sv
 

@@ -14,7 +14,7 @@
 
 
 # When you run make with the -i or --ignore-errors flag, 
-# errors are ignored in all recipes of all rules. 
+# errors are ignored in all recsubsystemes of all rules. 
 # A rule in the makefile for the special target .IGNORE has the same effect, 
 # if there are no prerequisites. This is less flexible but sometimes useful.
 # When errors are to be ignored, because of -i flag, make treats an error return just like success,
@@ -24,7 +24,7 @@
 # make target -i 
 
 # // TODO(mshariff): 
-# Add .git rules to ignore log files, basically the sim folder except makefile and scripts
+# Add .git rules to ignore log files, basically the sim folder except makefile and scrsubsystemts
 
 
 .IGNORE:
@@ -55,13 +55,13 @@ usage:
 	echo "make simulate test=<test_name> uvm_verbosity=<VERBOSITY_LEVEL>";
 	echo "";
 	echo "Example:":
-	echo "make simulate test=pulpino_spi_master_ip_base_test uvm_verbosity=UVM_HIGH";
+	echo "make simulate test=pulpino_spi_master_subsystem_base_test uvm_verbosity=UVM_HIGH";
 	echo "";
 	echo "To run regression:"
 	echo "make regression testlist_name=<regression_testlist_name.list>";
 	echo "";
 	echo "Example:":
-	echo "make regression testlist_name=pulpino_spi_master_ip_verification_regression.list";
+	echo "make regression testlist_name=pulpino_spi_master_subsystem_verification_regression.list";
 	echo "";
 	echo "-----------------------------------------------------------------";
 	echo "-----------------------------------------------------------------";
@@ -80,7 +80,7 @@ compile:
 	+acc \
 	+cover \
 	+fcover \
-	-l pulpino_spi_master_ip_verification_compile.log \
+	-l pulpino_spi_master_subsystem_verification_compile.log \
 	-f ../rtl_compile.f \
 	-f ../verif_compile.f
 
@@ -93,7 +93,7 @@ compile:
 
 # Setting a default test as base_test
 ifndef test
-override test = pulpino_spi_master_ip_base_test
+override test = pulpino_spi_master_subsystem_base_test
 endif
 
 # Setting the default uvm_verbosity to UVM_MEDIUM
@@ -102,8 +102,8 @@ override uvm_verbosity = UVM_MEDIUM
 endif
 
 
-ifndef pulpino_spi_master_ip_verification_type
-override  pulpino_spi_master_ip_verification_type= pulpino_spi_master_ip_verification_base_test
+ifndef pulpino_spi_master_subsystem_verification_type
+override  pulpino_spi_master_subsystem_verification_type= pulpino_spi_master_subsystem_verification_base_test
 endif
 
 ## For randomized seed
@@ -128,7 +128,7 @@ simulate:
 	-assertdebug \
 	+UVM_TESTNAME=$(test) \
 	+UVM_VERBOSITY=$(uvm_verbosity) \
-	+define+$(pulpino_spi_master_ip_verification_type) \
+	+define+$(pulpino_spi_master_subsystem_verification_type) \
 	-l $(test_folder)/$(test).log \
 	-sva \
   -coverage \
@@ -155,13 +155,13 @@ simulate:
 	# vsim -view waveform.wlf &
 	#
 	# To open the wavefrom with saved signals
-	# vsim -view waveform.wlf -do pulpino_spi_master_ip_verification_waves.do &
+	# vsim -view waveform.wlf -do pulpino_spi_master_subsystem_verification_waves.do &
 
 clean_simulate:
 	rm -rf *_test*
 
 clean_compile:
-	rm -rf work/ *_compile.log transcript waveform.wlf
+	rm -rf work/ *_compile.log transcrsubsystemt waveform.wlf
 	rm -rf merged_coverage.ucdb merged_cov_html_report
 
 #clean:
@@ -178,7 +178,7 @@ regression:
 	# Run simualtion - regression 
 	python regression_handling.py $(testlist_name)
 	#	# Get the tests from regression list
-	#	grep "_test" ../../src/hvl_top/testlists/pulpino_spi_master_ip_verification_simple_fd_regression.list | grep -v "\#" > reg_list
+	#	grep "_test" ../../src/hvl_top/testlists/pulpino_spi_master_subsystem_verification_simple_fd_regression.list | grep -v "\#" > reg_list
 	#	make simulate test=value #Get the name from regression list
 	#	Merge coverage
 	make merge_cov_report
@@ -203,11 +203,11 @@ compile_war_err:
 	echo "-----------------------------------------------------------------";
 	echo "------------------- Compilation Report --------------------------";
 	echo "";
-	grep "^** " pulpino_spi_master_ip_verification_compile.log;
+	grep "^** " pulpino_spi_master_subsystem_verification_compile.log;
 	echo "";
-	grep "^Error" pulpino_spi_master_ip_verification_compile.log;
+	grep "^Error" pulpino_spi_master_subsystem_verification_compile.log;
 	echo "";
-	echo "Log file path: pulpino_spi_master_ip_verification_compile.log"
+	echo "Log file path: pulpino_spi_master_subsystem_verification_compile.log"
 	echo "";
 	echo "-----------------------------------------------------------------";
 	echo "-----------------------------------------------------------------";
