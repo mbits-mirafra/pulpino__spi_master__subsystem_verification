@@ -25,5 +25,5 @@
 ../../src/rtl/peripherals/spi_master/spi_master_tx.sv
 ../../src/rtl/peripherals/periph_bus_wrap.sv
 
-../../src/rtl/subsystem_top.sv
+#../../src/rtl/subsystem_top.sv
 

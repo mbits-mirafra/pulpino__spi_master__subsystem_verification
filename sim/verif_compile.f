@@ -1,4 +1,4 @@
-+incdir+../../src/dv/globals/
+#+incdir+../../src/dv/globals/
 +incdir+../../src/dv/hvl_top/test/sequences/master_sequences/
 +incdir+../../src/dv/hvl_top/test/sequences/slave_sequences/
 +incdir+../../src/dv/hvl_top/test/sequences/master_sequences/reg_sequences/

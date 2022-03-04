@@ -59,25 +59,25 @@ module hdl_top;
   //-------------------------------------------------------
   // axi Interface Instantiation
   //-------------------------------------------------------
-  // axi_if axi_intf(sys_clk,sys_reset_n);
+   axi4_if axi_intf(sys_clk,sys_reset_n);
 
   //-------------------------------------------------------
   // axi Master BFM Agent Instantiation
   //-------------------------------------------------------
 
   // MSHA: Use the below values for AVIP global values
-  // AXI_ADDR_WIDTH = 32,
-  // AXI_DATA_WIDTH = 64,
+  // axi_ADDR_WIDTH = 32,
+  // axi_DATA_WIDTH = 64,
   
-  // axi_master_agent_bfm axi_master_agent_bfm_h(axi_intf); 
+   axi4_master_agent_bfm axi4_master_agent_bfm_h(axi_intf); 
 
   //-------------------------------------------------------
   // spi Interface Instantiation
   //-------------------------------------------------------
-  // spi_if spi_intf(sys_clk,sys_reset_n);
+  spi_if spi_intf(sys_clk,sys_reset_n);
 
   //-------------------------------------------------------
-  // AXI RTL interface Instantiation and connection
+  // axi RTL interface Instantiation and connection
   //-------------------------------------------------------
   AXI_BUS s_axi_bus();
 
@@ -149,33 +149,33 @@ module hdl_top;
   bit csn3;
   bit [1:0]events;
 
-  subsystem_top DUT
-  (
-       .clk                 (sys_clk),
-       .reset_n             (sys_reset_n),
+  //subsystem_top DUT
+  //(
+  //     .clk                 (sys_clk),
+  //     .reset_n             (sys_reset_n),
 
-       .axi_slave           (s_axi_bus),
+  //     .axi_slave           (s_axi_bus),
 
-       .spi_master_clk      (spi_intf.sclk),
-       .spi_master_csn0     (spi_intf.cs),
-       .spi_master_csn1     (csn1),
-       .spi_master_csn2     (csn2),
-       .spi_master_csn3     (csn3),
-       .spi_master_mode     (spi_mode),
-       .spi_master_sdo0     (spi_intf.mosi0),
-       .spi_master_sdo1     (spi_intf.mosi1),
-       .spi_master_sdo2     (spi_intf.mosi2),
-       .spi_master_sdo3     (spi_intf.mosi3),
-       .spi_master_sdi0     (spi_intf.miso0),
-       .spi_master_sdi1     (spi_intf.miso1),
-       .spi_master_sdi2     (spi_intf.miso2),
-       .spi_master_sdi3     (spi_intf.miso3)
-  );
+  //     .spi_master_clk      (spi_intf.sclk),
+  //     .spi_master_csn0     (spi_intf.cs),
+  //     .spi_master_csn1     (csn1),
+  //     .spi_master_csn2     (csn2),
+  //     .spi_master_csn3     (csn3),
+  //     .spi_master_mode     (spi_mode),
+  //     .spi_master_sdo0     (spi_intf.mosi0),
+  //     .spi_master_sdo1     (spi_intf.mosi1),
+  //     .spi_master_sdo2     (spi_intf.mosi2),
+  //     .spi_master_sdo3     (spi_intf.mosi3),
+  //     .spi_master_sdi0     (spi_intf.miso0),
+  //     .spi_master_sdi1     (spi_intf.miso1),
+  //     .spi_master_sdi2     (spi_intf.miso2),
+  //     .spi_master_sdi3     (spi_intf.miso3)
+  //);
 
   //-------------------------------------------------------
   // spi slave agent bfm Instantiation
   //-------------------------------------------------------
-  // spi_slave_agent_bfm spi_agent_bfm_h(spi_intf);
+  spi_slave_agent_bfm spi_agent_bfm_h(spi_intf);
 
 endmodule : hdl_top
 
