@@ -1,0 +1,107 @@
+QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
+Start time: 18:02:21 on Mar 08,2022
+vlog -sv "+acc" "+cover" "+fcover" -l pulpino_spi_master_subsystem_verification_compile.log -f ../rtl_compile.f -f ../verif_compile.f 
+-- Compiling package config_pkg
+-- Compiling package apb_bus_sv_unit
+-- Importing package config_pkg
+-- Compiling interface APB_BUS
+-- Compiling package axi_bus_sv_unit
+-- Importing package config_pkg
+-- Compiling interface AXI_BUS
+-- Compiling module apb_spi_master
+-- Compiling module spi_master_apb_if
+-- Compiling module spi_master_clkgen
+-- Compiling module spi_master_controller
+-- Compiling module spi_master_fifo
+-- Compiling module spi_master_rx
+-- Compiling module spi_master_tx
+-- Compiling module periph_bus_wrap
+-- Compiling package axi4_globals_pkg
+-- Compiling package spi_globals_pkg
+-- Compiling package pulpino_spi_master_subsystem_global_pkg
+-- Compiling package axi4_master_pkg
+** Note: (vlog-2286) ../../src/dv/hvl_top/axi4_master_agent/axi4_master_pkg.sv(13): Using implicit +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package axi4_globals_pkg
+-- Compiling package spi_slave_pkg
+-- Importing package spi_globals_pkg
+-- Compiling package spi_master_defines_pkg
+-- Compiling package spi_master_uvm_pkg
+-- Compiling package axi4_reg_seq_pkg
+-- Importing package spi_master_defines_pkg
+-- Importing package spi_master_uvm_pkg
+-- Compiling package axi4_master_seq_pkg
+-- Importing package axi4_master_pkg
+-- Compiling package spi_slave_seq_pkg
+-- Importing package spi_slave_pkg
+-- Compiling package pulpino_spi_master_subsystem_env_pkg
+-- Importing package pulpino_spi_master_subsystem_global_pkg
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(36)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_env.sv(33): Invalid type 'axi4_master_collector'. Please check the type of the variable 'axi4_master_coll_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(36)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_env.sv(93): (vlog-2730) Undefined variable: 'axi4_master_coll_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(36)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_env.sv(93): (vlog-2164) Class or package 'axi4_master_collector' not found.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(36)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_env.sv(93): (vlog-2730) Undefined variable: 'axi4_master_collector'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv(36)
+** at ../../src/dv/hvl_top/env//pulpino_spi_master_subsystem_env.sv(93): near "::": syntax error, unexpected ::, expecting ';'.
+-- Compiling package pulpino_spi_master_subsystem_virtual_seq_pkg
+-- Importing package axi4_master_seq_pkg
+-- Importing package spi_slave_seq_pkg
+** Error: ../../src/dv/hvl_top/test/virtual_sequences/pulpino_spi_master_subsystem_virtual_seq_pkg.sv(20): (vlog-13006) Could not find the package (pulpino_spi_master_subsystem_env_pkg).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+-- Importing package axi4_reg_seq_pkg
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/virtual_sequences/pulpino_spi_master_subsystem_virtual_seq_pkg.sv(26)
+** while parsing macro expansion: 'uvm_declare_p_sequencer' starting at ../../src/dv/hvl_top/test/virtual_sequences//pulpino_spi_master_subsystem_virtual_base_seq.sv(12)
+** at ../../src/dv/hvl_top/test/virtual_sequences//pulpino_spi_master_subsystem_virtual_base_seq.sv(12): Invalid type 'pulpino_spi_master_subsystem_virtual_sequencer'. Please check the type of the variable 'p_sequencer'.
+-- Compiling package pulpino_spi_master_subsystem_test_pkg
+** Error: ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(24): (vlog-13006) Could not find the package (pulpino_spi_master_subsystem_env_pkg).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+** Error: ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(29): (vlog-13006) Could not find the package (pulpino_spi_master_subsystem_virtual_seq_pkg).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(15): Invalid type 'pulpino_spi_master_subsystem_env'. Please check the type of the variable 'pulpino_spi_master_subsystem_env_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(19): Invalid type 'pulpino_spi_master_subsystem_env_config'. Please check the type of the variable 'pulpino_spi_master_subsystem_env_cfg_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(59): (vlog-2730) Undefined variable: 'pulpino_spi_master_subsystem_env_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(59): (vlog-2164) Class or package 'pulpino_spi_master_subsystem_env' not found.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(59): (vlog-2730) Undefined variable: 'pulpino_spi_master_subsystem_env'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(59): near "::": syntax error, unexpected ::, expecting ';'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(67): (vlog-2730) Undefined variable: 'pulpino_spi_master_subsystem_env_cfg_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(67): (vlog-2164) Class or package 'pulpino_spi_master_subsystem_env_config' not found.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(67): (vlog-2730) Undefined variable: 'pulpino_spi_master_subsystem_env_config'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(34)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_base_test.sv(67): near "::": syntax error, unexpected ::, expecting ';'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(35)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_basic_write_read_reg_test.sv(87): near ";": syntax error, unexpected ';', expecting '('.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(35)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_basic_write_read_reg_test.sv(88): (vlog-2730) Undefined variable: 'pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(35)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_basic_write_read_reg_test.sv(88): (vlog-2164) Class or package 'pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq' not found.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(35)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_basic_write_read_reg_test.sv(88): (vlog-2730) Undefined variable: 'pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(35)
+** at ../../src/dv/hvl_top/test//pulpino_spi_master_subsystem_basic_write_read_reg_test.sv(88): near "::": syntax error, unexpected ::, expecting ';'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(36)
+** at ../../src/dv/hvl_top/test//axi4_simple_reg_test.sv(88): near ";": syntax error, unexpected ';', expecting '('.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(36)
+** at ../../src/dv/hvl_top/test//axi4_simple_reg_test.sv(90): (vlog-2730) Undefined variable: 'reg_vseq_h'.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(36)
+** at ../../src/dv/hvl_top/test//axi4_simple_reg_test.sv(90): (vlog-2164) Class or package 'virtual_reg_seq' not found.
+** Error: ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(36)
+** at ../../src/dv/hvl_top/test//axi4_simple_reg_test.sv(90): (vlog-2730) Undefined variable: 'virtual_reg_seq'.
+** Error: (vlog-13069) ** while parsing file included at ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv(36)
+** at ../../src/dv/hvl_top/test//axi4_simple_reg_test.sv(90): near "::": syntax error, unexpected ::, expecting ';'.
+** Error: ../../src/dv/hdl_top/spi_interface/spi_if.sv(19): Identifier 'NO_OF_SLAVES' is not directly visible.
+   Found multiple Declaration of 'NO_OF_SLAVES' through wildcard imports from these packages : axi4_globals_pkg, spi_globals_pkg
+** Error: ../../src/dv/hdl_top/spi_interface/spi_if.sv(19): Identifier 'NO_OF_SLAVES' is not directly visible.
+   Found multiple Declaration of 'NO_OF_SLAVES' through wildcard imports from these packages : axi4_globals_pkg, spi_globals_pkg
+** Error: ../../src/dv/hdl_top/spi_interface/spi_if.sv(19): (vlog-2730) Undefined variable: 'NO_OF_SLAVES'.
+** Error: ../../src/dv/hvl_top/hvl_top.sv(14): (vlog-13006) Could not find the package (pulpino_spi_master_subsystem_test_pkg).  Design read will continue, but expect a cascade of errors after this failure.  Furthermore if you experience a vopt-7 error immediately before this error then please check the package names or the library search paths on the command line.
+End time: 18:02:23 on Mar 08,2022, Elapsed time: 0:00:02
+Errors: 33, Warnings: 0
