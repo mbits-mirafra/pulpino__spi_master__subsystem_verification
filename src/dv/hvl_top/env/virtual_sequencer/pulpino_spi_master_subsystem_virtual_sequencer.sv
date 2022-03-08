@@ -10,11 +10,11 @@ class pulpino_spi_master_subsystem_virtual_sequencer extends uvm_sequencer#(uvm_
 
   // Variable: master_seqr_h
   // Declaring master sequencer handle
-  //axi4_master_sequencer axi4_master_seqr_h;
+  axi4_master_write_sequencer axi4_master_write_seqr_h;
 
   // Variable: slave_seqr_h
   // Declaring slave sequencer handle
-  //spi_slave_sequencer spi_slave_seqr_h;
+  spi_slave_sequencer spi_slave_seqr_h;
 
   //Variable: env_config_h
   //Declaring handle for pulpino_spi_master_subsystem_env_config_object
@@ -48,8 +48,8 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void pulpino_spi_master_subsystem_virtual_sequencer::build_phase(uvm_phase phase);
   super.build_phase(phase);
-  //axi4_master_seqr_h = axi4_master_sequencer::type_id::create("axi4_master_seqr_h",this);
-  //spi_slave_seqr_h = spi_slave_sequencer::type_id::create("spi_slave_seqr_h",this);
+  axi4_master_write_seqr_h = axi4_master_write_sequencer::type_id::create("axi4_master_write_seqr_h",this);
+  spi_slave_seqr_h = spi_slave_sequencer::type_id::create("spi_slave_seqr_h",this);
 endfunction : build_phase
 
 `endif

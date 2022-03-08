@@ -52,8 +52,8 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 function void spi_slave_collector::write(spi_slave_tx t);
 
- `uvm_info(get_type_name(),$sformatf("Req print = %0s",t.sprint()),UVM_HIGH) 
- spi_slave_coll_analysis_port.write(t);
+  `uvm_info(get_type_name(),$sformatf("Req print = %0s",t.sprint()),UVM_HIGH) 
+  spi_slave_coll_analysis_port.write(t);
 
 endfunction : write
 

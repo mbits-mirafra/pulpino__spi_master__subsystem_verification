@@ -16,8 +16,12 @@ class pulpino_spi_master_subsystem_scoreboard extends uvm_scoreboard;
   
   //Variable : axi4_master_analysis_fifo
   //Used to store the axi4_master_data
-  uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_analysis_fifo;
-
+  uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_read_address_analysis_fifo;
+  uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_read_data_analysis_fifo;
+  uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_write_address_analysis_fifo;
+  uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_write_data_analysis_fifo;
+  uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_write_response_analysis_fifo;
+  
   //Variable : spi_slave_analysis_fifo
   //Used to store the spi_slave_data
   uvm_tlm_analysis_fifo#(spi_slave_tx) spi_slave_analysis_fifo;
@@ -60,7 +64,11 @@ endclass : pulpino_spi_master_subsystem_scoreboard
 //--------------------------------------------------------------------------------------------
 function pulpino_spi_master_subsystem_scoreboard::new(string name = "pulpino_spi_master_subsystem_scoreboard",uvm_component parent = null);
 super.new(name, parent);
-  axi4_master_analysis_fifo = new("axi4_master_analysis_fifo",this);
+  axi4_master_write_address_analysis_fifo = new("axi4_master_write_address_analysis_fifo",this);
+  axi4_master_write_data_analysis_fifo = new("axi4_master_write_data_analysis_fifo",this);
+  axi4_master_write_response_analysis_fifo = new("axi4_master_write_response_analysis_fifo",this);
+  axi4_master_read_address_analysis_fifo = new("axi4_master_read_address_analysis_fifo",this);
+  axi4_master_read_data_analysis_fifo = new("axi4_master_read_data_analysis_fifo",this);
   spi_slave_analysis_fifo = new("spi_slave_analysis_fifo",this);
 endfunction : new
 
