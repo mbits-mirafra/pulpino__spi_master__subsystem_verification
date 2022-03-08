@@ -42,22 +42,24 @@ function uvm_sequence_item axi4_master_adapter::reg2bus( const ref uvm_reg_bus_o
 
   if ( rw.kind == UVM_READ )
   begin
-    axi4_tx.transfer_type =  NON_BLOCKING_READ;
+    axi4_tx.transfer_type =  BLOCKING_READ;
     axi4_tx.arburst = READ_INCR;
     axi4_tx.araddr = rw.addr;
-    axi4_tx.arsize = READ_8_BYTES;
+    axi4_tx.arsize = READ_4_BYTES;
+    axi4_tx.arlen = 8'h1;
     axi4_tx.tx_type = READ;
   end
 
   if ( rw.kind == UVM_WRITE ) 
   begin
-    axi4_tx.transfer_type =  NON_BLOCKING_WRITE;
+    axi4_tx.transfer_type =  BLOCKING_WRITE;
     axi4_tx.awburst = WRITE_INCR;
     foreach(rw.data[i]) begin
       axi4_tx.wdata[i] = rw.data[i];
     end
     axi4_tx.awaddr = rw.addr;
-    axi4_tx.awsize =  WRITE_8_BYTES;
+    axi4_tx.awsize =  WRITE_4_BYTES;
+    axi4_tx.awlen =  8'b1;
     axi4_tx.tx_type = WRITE;
   end
 

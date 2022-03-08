@@ -24,6 +24,7 @@ package pulpino_spi_master_subsystem_virtual_seq_pkg;
   // Including required package files
   //-------------------------------------------------------
   `include "pulpino_spi_master_subsystem_virtual_base_seq.sv"
+  `include "pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq.sv"
   
   // Register virtual sequences
   `include "virtual_reg_seq.sv"

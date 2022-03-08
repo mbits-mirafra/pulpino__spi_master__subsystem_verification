@@ -24,6 +24,7 @@ package axi4_reg_seq_pkg;
   `include "spi_master_defines.svh"
 
   `include "axi4_master_reg_base_seq.sv"
+  `include "axi4_master_basic_write_read_reg_seq.sv"
 
 endpackage : axi4_reg_seq_pkg
 

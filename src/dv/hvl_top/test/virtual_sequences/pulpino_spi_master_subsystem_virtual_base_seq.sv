@@ -13,12 +13,12 @@ class pulpino_spi_master_subsystem_virtual_base_seq extends uvm_sequence;
   
   //variable : apb_master_vsqr_h
   //Declaring handle to the virtual sequencer
-  //axi4_master_write_sequencer  axi4_master_write_seqr_h;
+  axi4_master_write_sequencer  axi4_master_write_seqr_h;
   //axi4_master_read_sequencer  axi4_master_read_seqr_h;  
  
   //variable : spi_slave_vsqr_h
   //Declaring handle to the virtual sequencer
-  //spi_slave_sequencer spi_slave_seqr_h;
+  spi_slave_sequencer spi_slave_seqr_h;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -49,10 +49,10 @@ task pulpino_spi_master_subsystem_virtual_base_seq::body();
     `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
   end
   
-  //axi4_master_write_seqr_h = p_sequencer.axi4_master_write_seqr_h;
+  axi4_master_write_seqr_h = p_sequencer.axi4_master_write_seqr_h;
   //axi4_master_read_seqr_h = p_sequencer.axi4_master_read_seqr_h;
   
-  //spi_slave_seqr_h  = p_sequencer.spi_slave_seqr_h;
+  spi_slave_seqr_h  = p_sequencer.spi_slave_seqr_h;
 
 endtask : body
 
