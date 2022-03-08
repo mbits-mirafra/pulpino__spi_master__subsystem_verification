@@ -23,6 +23,7 @@ package axi4_master_pkg;
   `include "axi4_master_agent_config.sv"
   `include "axi4_master_seq_item_converter.sv"
   `include "axi4_master_cfg_converter.sv"
+  `include "axi4_master_adapter.sv"
   `include "axi4_master_write_sequencer.sv"
   `include "axi4_master_read_sequencer.sv"
   `include "axi4_master_driver_proxy.sv"
