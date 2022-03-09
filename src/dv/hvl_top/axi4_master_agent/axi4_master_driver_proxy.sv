@@ -45,6 +45,10 @@ class axi4_master_driver_proxy extends uvm_driver#(axi4_master_tx);
   //Declaration of RSP handles
   RSP rsp_wr, rsp_rd;
       
+  //Variable: axi4_master_tx_h
+  //Declaring handle for axi4_master tx class 
+  axi4_master_tx axi4_master_tx_h;
+  
   //Variable: axi4_master_agent_cfg_h
   //Declaring handle for axi4_master agent config class 
   axi4_master_agent_config axi4_master_agent_cfg_h;

@@ -59,6 +59,7 @@ task pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq::body();
    axi4_master_basic_write_read_reg_seq_h = axi4_master_basic_write_read_reg_seq::type_id::create("axi4_master_basic_write_read_reg_seq_h");
    axi4_master_basic_write_read_reg_seq_h.model = p_sequencer.env_config_h.spi_master_reg_block;
    axi4_master_basic_write_read_reg_seq_h.start(p_sequencer.axi4_master_write_seqr_h);
+   axi4_master_basic_write_read_reg_seq_h.start(p_sequencer.axi4_master_read_seqr_h);
    write_read_key.put(1);
    `uvm_info("master_vseq",$sformatf("ended master vseq"),UVM_HIGH)
  end
