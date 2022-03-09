@@ -110,6 +110,7 @@ function void pulpino_spi_master_subsystem_env::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
   if(pulpino_spi_master_subsystem_env_config_h.has_virtual_seqr) begin
     pulpino_spi_master_subsystem_virtual_seqr_h.axi4_master_write_seqr_h = axi4_master_agent_h.axi4_master_write_seqr_h;
+    pulpino_spi_master_subsystem_virtual_seqr_h.axi4_master_read_seqr_h = axi4_master_agent_h.axi4_master_read_seqr_h;
     foreach(spi_slave_agent_h[i]) begin
       pulpino_spi_master_subsystem_virtual_seqr_h.spi_slave_seqr_h = spi_slave_agent_h[i].spi_slave_seqr_h;
     end

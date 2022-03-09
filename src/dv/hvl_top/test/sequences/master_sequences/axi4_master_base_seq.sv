@@ -38,8 +38,10 @@ task axi4_master_base_seq::body();
 
   //dynamic casting of p_sequencer and m_sequencer
   //if(!$cast(p_sequencer,m_sequencer))begin
-  //  `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
+    //`uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
   //end
-            
+  req = axi4_master_tx::type_id::create("req");
+  req.transfer_type=BLOCKING_WRITE;
+  req.transfer_type=BLOCKING_READ;
 endtask:body
 `endif

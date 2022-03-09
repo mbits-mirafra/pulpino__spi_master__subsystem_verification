@@ -19,6 +19,8 @@ package axi4_master_seq_pkg;
   // Including required axi4 master seq files
   //-------------------------------------------------------
   `include "axi4_master_base_seq.sv"
+  `include "axi4_master_basic_write_seq.sv"
+  `include "axi4_master_basic_read_seq.sv"
 
 endpackage : axi4_master_seq_pkg
 

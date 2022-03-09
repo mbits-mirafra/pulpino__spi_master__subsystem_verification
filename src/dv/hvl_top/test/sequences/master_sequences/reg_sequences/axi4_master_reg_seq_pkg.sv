@@ -14,7 +14,7 @@ package axi4_reg_seq_pkg;
   import axi4_globals_pkg::*;
   import spi_globals_pkg::*;
   import uvm_pkg::*;
-  //import axi4_master_pkg::*;
+  import axi4_master_pkg::*;
   import spi_master_defines_pkg::*;
   import spi_master_uvm_pkg::*;
   
