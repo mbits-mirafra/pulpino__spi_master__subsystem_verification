@@ -116,30 +116,14 @@ function void pulpino_spi_master_subsystem_env::connect_phase(uvm_phase phase);
     pulpino_spi_master_subsystem_virtual_seqr_h.env_config_h = pulpino_spi_master_subsystem_env_config_h; 
   end
   
-  axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_read_address_analysis_port.connect
-                                              (axi4_master_coll_h.axi4_master_coll_imp_port);
-  //axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_read_data_analysis_port.connect
-  //                                            (axi4_master_coll_h.axi4_master_coll_imp_port);
   axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_write_address_analysis_port.connect
                                               (axi4_master_coll_h.axi4_master_coll_imp_port);
-  //axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_write_data_analysis_port.connect
-  //                                            (axi4_master_coll_h.axi4_master_coll_imp_port);
-  //axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_write_response_analysis_port.connect
-  //                                            (axi4_master_coll_h.axi4_master_coll_imp_port);
   foreach(spi_slave_agent_h[i]) begin
     spi_slave_agent_h[i].spi_slave_mon_proxy_h.spi_slave_analysis_port.connect(spi_slave_coll_h.spi_slave_coll_imp_port);
   end
 
-  axi4_master_coll_h.axi4_master_write_address_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
-                                                                 .axi4_master_write_address_analysis_fifo.analysis_export);
-  //axi4_master_coll_h.axi4_master_write_data_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
-  //                                                            .axi4_master_write_data_analysis_fifo.analysis_export);
-  //axi4_master_coll_h.axi4_master_write_response_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
-  //                                                                .axi4_master_write_response_analysis_fifo.analysis_export);
-  axi4_master_coll_h.axi4_master_read_address_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
-                                                                .axi4_master_read_address_analysis_fifo.analysis_export);
-  //axi4_master_coll_h.axi4_master_read_data_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
-  //                                                           .axi4_master_read_data_analysis_fifo.analysis_export);
+  axi4_master_coll_h.axi4_master_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
+                                                   .axi4_master_write_address_analysis_fifo.analysis_export);
   spi_slave_coll_h.spi_slave_coll_analysis_port.connect(pulpino_spi_master_subsystem_scoreboard_h
                                                .spi_slave_analysis_fifo.analysis_export);
 
@@ -156,11 +140,7 @@ function void pulpino_spi_master_subsystem_env::connect_phase(uvm_phase phase);
   axi4_reg_predictor_h.map     = pulpino_spi_master_subsystem_env_config_h.spi_master_reg_block.default_map;
   axi4_reg_predictor_h.adapter = axi4_master_agent_h.axi4_reg_adapter_h;
   
-  axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_read_address_analysis_port.connect( axi4_reg_predictor_h.bus_in);
-  //axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_read_data_analysis_port.connect( axi4_reg_predictor_h.bus_in);
   axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_write_address_analysis_port.connect( axi4_reg_predictor_h.bus_in);
-  //axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_write_data_analysis_port.connect( axi4_reg_predictor_h.bus_in);
-  //axi4_master_agent_h.axi4_master_mon_proxy_h.axi4_master_write_response_analysis_port.connect( axi4_reg_predictor_h.bus_in);
   
   endfunction : connect_phase
 
