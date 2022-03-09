@@ -8,24 +8,37 @@
 class pulpino_spi_master_subsystem_scoreboard extends uvm_scoreboard;
   `uvm_component_utils(pulpino_spi_master_subsystem_scoreboard)
 
+  //Variable : axi4_data_packet
+  //Handle for collector_packet_s struct
   collector_packet_s axi4_data_packet;
 
   //Variable : spi_slave_tx_h
   //Declaring handle for spi_slaver_tx
   spi_slave_tx spi_slave_tx_h;
   
-  //Variable : axi4_master_analysis_fifo
+  //Variable : axi4_master_read_address_analysis_fifo
   //Used to store the axi4_master_data
   uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_read_address_analysis_fifo;
+
+  //Variable : axi4_master_read_data_analysis_fifo
+  //Used to store the axi4_master_data
   uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_read_data_analysis_fifo;
+
+  //Variable : axi4_master_write_address_analysis_fifo
+  //Used to store the axi4_master_data
   uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_write_address_analysis_fifo;
+
+  //Variable : axi4_master_write_data_analysis_fifo
+  //Used to store the axi4_master_data
   uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_write_data_analysis_fifo;
+  
+  //Variable : axi4_master_write_response_analysis_fifo
+  //Used to store the axi4_master_data
   uvm_tlm_analysis_fifo#(collector_packet_s) axi4_master_write_response_analysis_fifo;
   
   //Variable : spi_slave_analysis_fifo
   //Used to store the spi_slave_data
   uvm_tlm_analysis_fifo#(spi_slave_tx) spi_slave_analysis_fifo;
-  //uvm_tlm_analysis_fifo#(slave_tx) spi_slave_analysis_fifo[NO_OF_SLAVES];
 
   //Variable : axi4_master_tx_count
   //to keep track of number of transactions for master 
@@ -62,14 +75,16 @@ endclass : pulpino_spi_master_subsystem_scoreboard
 //  name - pulpino_spi_master_subsystem_scoreboard
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-function pulpino_spi_master_subsystem_scoreboard::new(string name = "pulpino_spi_master_subsystem_scoreboard",uvm_component parent = null);
-super.new(name, parent);
-  axi4_master_write_address_analysis_fifo = new("axi4_master_write_address_analysis_fifo",this);
-  axi4_master_write_data_analysis_fifo = new("axi4_master_write_data_analysis_fifo",this);
+function pulpino_spi_master_subsystem_scoreboard::new(string name = "pulpino_spi_master_subsystem_scoreboard",
+                                                      uvm_component parent = null);
+  super.new(name, parent);
+  axi4_master_write_address_analysis_fifo  = new("axi4_master_write_address_analysis_fifo",this);
+  axi4_master_write_data_analysis_fifo     = new("axi4_master_write_data_analysis_fifo",this);
   axi4_master_write_response_analysis_fifo = new("axi4_master_write_response_analysis_fifo",this);
-  axi4_master_read_address_analysis_fifo = new("axi4_master_read_address_analysis_fifo",this);
-  axi4_master_read_data_analysis_fifo = new("axi4_master_read_data_analysis_fifo",this);
-  spi_slave_analysis_fifo = new("spi_slave_analysis_fifo",this);
+  axi4_master_read_address_analysis_fifo   = new("axi4_master_read_address_analysis_fifo",this);
+  axi4_master_read_data_analysis_fifo      = new("axi4_master_read_data_analysis_fifo",this);
+  spi_slave_analysis_fifo                  = new("spi_slave_analysis_fifo",this);
+
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
@@ -94,7 +109,6 @@ task pulpino_spi_master_subsystem_scoreboard::run_phase(uvm_phase phase);
   super.run_phase(phase);
 endtask : run_phase
 
-
 //--------------------------------------------------------------------------------------------
 // Function: check_phase
 // Display the result of simulation
@@ -106,7 +120,6 @@ function void pulpino_spi_master_subsystem_scoreboard::check_phase(uvm_phase pha
   super.check_phase(phase);
 endfunction : check_phase
   
-
 //--------------------------------------------------------------------------------------------
 // Function: report_phase
 // Display the result of simulation
