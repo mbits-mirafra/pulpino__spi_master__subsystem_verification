@@ -84,14 +84,14 @@ endfunction : start_of_simulation_phase
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task basic_write_read_reg_test::run_phase(uvm_phase phase);
-  pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq_h;
-  pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq_h = pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq::type_id::create("pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq_h");
+  virtual_basic_write_read_reg_seq virtual_basic_write_read_reg_seq_h;
+  virtual_basic_write_read_reg_seq_h = virtual_basic_write_read_reg_seq::type_id::create("virtual_basic_write_read_reg_seq_h");
 
   `uvm_info(get_type_name(),$sformatf("basic_write_read_reg_test"),UVM_LOW);
 
   phase.raise_objection(this);
 
-  pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq_h.start(pulpino_spi_master_subsystem_env_h.pulpino_spi_master_subsystem_virtual_seqr_h); 
+  virtual_basic_write_read_reg_seq_h.start(pulpino_spi_master_subsystem_env_h.pulpino_spi_master_subsystem_virtual_seqr_h); 
 
   phase.drop_objection(this);
 
