@@ -1,12 +1,12 @@
-`ifndef PULPINO_SPI_MASTER_IP_VIRTUAL_BASE_SEQ_INCLUDED_
-`define PULPINO_SPI_MASTER_IP_VIRTUAL_BASE_SEQ_INCLUDED_
+`ifndef virtual_base_seq_INCLUDED_
+`define virtual_base_seq_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-// Class: pulpino_spi_master_subsystem_virtual_base_seq
+// Class: virtual_base_seq
 // Holds the handle of actual sequencer.
 //--------------------------------------------------------------------------------------------
-class pulpino_spi_master_subsystem_virtual_base_seq extends uvm_sequence;
-  `uvm_object_utils(pulpino_spi_master_subsystem_virtual_base_seq)
+class virtual_base_seq extends uvm_sequence;
+  `uvm_object_utils(virtual_base_seq)
   
   //Declaring p_sequencer
   `uvm_declare_p_sequencer(pulpino_spi_master_subsystem_virtual_sequencer)
@@ -23,17 +23,17 @@ class pulpino_spi_master_subsystem_virtual_base_seq extends uvm_sequence;
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
-  extern function new(string name = "pulpino_spi_master_subsystem_virtual_base_seq");
+  extern function new(string name = "virtual_base_seq");
   extern task body();
-endclass : pulpino_spi_master_subsystem_virtual_base_seq
+endclass : virtual_base_seq
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
 //
 // Parameters:
-//  name - pulpino_spi_master_subsystem_virtual_base_seq
+//  name - virtual_base_seq
 //--------------------------------------------------------------------------------------------
-function pulpino_spi_master_subsystem_virtual_base_seq::new(string name = "pulpino_spi_master_subsystem_virtual_base_seq");
+function virtual_base_seq::new(string name = "virtual_base_seq");
   super.new(name);
 endfunction : new
 
@@ -42,9 +42,9 @@ endfunction : new
 // Used to connect the master virtual seqr to master seqr
 //
 // Parameters:
-//  name - pulpino_spi_master_subsystem_virtual_base_seq
+//  name - virtual_base_seq
 //--------------------------------------------------------------------------------------------
-task pulpino_spi_master_subsystem_virtual_base_seq::body();
+task virtual_base_seq::body();
   if(!$cast(p_sequencer,m_sequencer))begin
     `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
   end

@@ -8,11 +8,7 @@
 class axi4_master_collector extends uvm_component;
   `uvm_component_utils(axi4_master_collector)
 
-  uvm_analysis_port#(collector_packet_s) axi4_master_write_address_coll_analysis_port;
-  //uvm_analysis_port#(collector_packet_s) axi4_master_write_data_coll_analysis_port;
-  //uvm_analysis_port#(collector_packet_s) axi4_master_write_response_coll_analysis_port;
-  uvm_analysis_port#(collector_packet_s) axi4_master_read_address_coll_analysis_port;
-  //uvm_analysis_port#(collector_packet_s) axi4_master_read_data_coll_analysis_port;
+  uvm_analysis_port#(collector_packet_s) axi4_master_coll_analysis_port;
   uvm_analysis_imp#(axi4_master_tx, axi4_master_collector) axi4_master_coll_imp_port;
 
   uvm_reg_map map;
@@ -37,12 +33,8 @@ endclass : axi4_master_collector
 //--------------------------------------------------------------------------------------------
 function axi4_master_collector::new(string name = "axi4_master_collector", uvm_component parent = null);
   super.new(name, parent);
-  axi4_master_write_address_coll_analysis_port  = new("axi4_master_write_address_coll_analysis_port",this);
-  //axi4_master_write_data_coll_analysis_port     = new("axi4_master_write_data_coll_analysis_port",this);
-  //axi4_master_write_response_coll_analysis_port = new("axi4_master_write_response_coll_analysis_port",this);
-  axi4_master_read_address_coll_analysis_port   = new("axi4_master_read_address_coll_analysis_port",this);
-  //axi4_master_read_data_coll_analysis_port      = new("axi4_master_read_data_coll_analysis_port",this);
-  axi4_master_coll_imp_port                     = new("axi4_master_coll_imp_port",this);
+  axi4_master_coll_analysis_port = new("axi4_master_coll_analysis_port",this);
+  axi4_master_coll_imp_port      = new("axi4_master_coll_imp_port",this);
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
@@ -62,32 +54,31 @@ endfunction : build_phase
 // t  - axi4_master_tx
 //--------------------------------------------------------------------------------------------
 function void axi4_master_collector::write(axi4_master_tx t);
-  
-  uvm_reg rg_write_address;
-  uvm_reg rg_read_address;
 
-  //--------------------------------------------------------------------------------------------
-  // WRITE_ADDRESS_CHANNEL collector
-  //--------------------------------------------------------------------------------------------
-  rg_write_address = map.get_reg_by_offset(t.awaddr, t.tx_type);
-  `uvm_info(get_type_name(), $sformatf("rg_write_address_name = %0s", rg_write_address.get_name()),UVM_HIGH)
-  `uvm_info(get_type_name(), $sformatf("rg_write_address = %0h", rg_write_address.get_address()),UVM_HIGH)
-  `uvm_info(get_type_name(), $sformatf("rg_write_address_data = %0h", rg_write_address.get()),UVM_HIGH)
+  uvm_reg rg;
+
+  `uvm_info(get_type_name(),$sformatf("Req print = %0s",t.sprint()),UVM_HIGH)
+
+  rg = map.get_reg_by_offset(t.awaddr,t.tx_type);
+
+  `uvm_info(get_type_name(), $sformatf("rg_name = %0s", rg.get_name()),UVM_HIGH)
+  `uvm_info(get_type_name(), $sformatf("rg_address = %0h", rg.get_address()),UVM_HIGH)
+  `uvm_info(get_type_name(), $sformatf("rg_data = %0h", rg.get()),UVM_HIGH)
   `uvm_info(get_type_name(), $sformatf("map_name = %0p", map.get_full_name()),UVM_HIGH)
-  
-  if(rg_write_address.get_name == "SPILEN") begin : SPILEN
-    coll_pkt.spi_length = rg_write_address.get();  
+
+  if(rg.get_name == "SPILEN") begin
+    coll_pkt.spi_length = rg.get();  
     `uvm_info(get_type_name(), $sformatf("coll_pkt.spi_length = %0h", coll_pkt.spi_length),UVM_HIGH)
     coll_pkt.cmd_len = coll_pkt.spi_length[5:0];
     coll_pkt.addr_len = coll_pkt.spi_length[13:8];
     coll_pkt.mosi_data_len = coll_pkt.spi_length[31:16];
   end
 
-  if(rg_write_address.get_name == "SPICMD") begin : SPICMD
+  if(rg.get_name == "SPICMD") begin : SPICMD
     bit [31:0]cmd_local;
     int k;
-    coll_pkt.j =  coll_pkt.cmd_len + coll_pkt.addr_len + coll_pkt.mosi_data_len - 1;
-    cmd_local = rg_write_address.get();
+    coll_pkt.j =  coll_pkt.cmd_len + coll_pkt.addr_len + coll_pkt.mosi_data_len - 'd1;
+    cmd_local = rg.get();
     `uvm_info(get_type_name(), $sformatf("cmd_local = %0h", cmd_local),UVM_HIGH)
     `uvm_info(get_type_name(), $sformatf("spi_len[5:0] = %0h", coll_pkt.spi_length[5:0]),UVM_HIGH)
     foreach(cmd_local[i]) begin
@@ -96,6 +87,7 @@ function void axi4_master_collector::write(axi4_master_tx t);
       end
       else begin
         coll_pkt.cmd[i] = cmd_local[i];
+        //`uvm_info(get_type_name(), $sformatf("inside cmd_local[%0d] = %0h",i, cmd_local[i]),UVM_HIGH)
         coll_pkt.data[coll_pkt.j-k] = cmd_local[i];
         k=k+1;
       end
@@ -103,13 +95,14 @@ function void axi4_master_collector::write(axi4_master_tx t);
     `uvm_info(get_type_name(),$sformatf("Inside CMD-final_data=%0h",coll_pkt.data),UVM_HIGH)
     coll_pkt.flag = coll_pkt.flag + 1;
     `uvm_info(get_type_name(), $sformatf("cmd_data = %0h", coll_pkt.cmd),UVM_HIGH)
+    `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -flag=%0h",coll_pkt.flag),UVM_HIGH)
   end
   
-  if(rg_write_address.get_name == "SPIADR") begin : SPIADR
+  if(rg.get_name == "SPIADR") begin : SPIADR
     bit [31:0]addr_local;
     int k;
-    coll_pkt.j =  coll_pkt.addr_len + coll_pkt.mosi_data_len - 1 ;
-    addr_local = rg_write_address.get();
+    coll_pkt.j =  coll_pkt.addr_len + coll_pkt.mosi_data_len - 'd1 ;
+    addr_local = rg.get();
     `uvm_info(get_type_name(), $sformatf("addr_local = %0h", addr_local),UVM_HIGH)
     `uvm_info(get_type_name(), $sformatf("spi_len[13:8] = %0h", coll_pkt.spi_length[13:8]),UVM_HIGH)
     foreach(addr_local[i]) begin
@@ -118,7 +111,7 @@ function void axi4_master_collector::write(axi4_master_tx t);
       end
       else begin
         coll_pkt.addr[i] = addr_local[i];
-        `uvm_info(get_type_name(), $sformatf("inside addr_local[%0d] = %0h",i, addr_local[i]),UVM_HIGH)
+        //`uvm_info(get_type_name(), $sformatf("inside addr_local[%0d] = %0h",i, addr_local[i]),UVM_HIGH)
         coll_pkt.data[coll_pkt.j-k] = addr_local[i];
         k=k+1;
       end
@@ -126,12 +119,37 @@ function void axi4_master_collector::write(axi4_master_tx t);
     `uvm_info(get_type_name(),$sformatf("Inside ADR--final_data=%0h",coll_pkt.data),UVM_HIGH)
     coll_pkt.flag = coll_pkt.flag + 1;
     `uvm_info(get_type_name(), $sformatf("addr_data = %0h", coll_pkt.addr),UVM_HIGH)
+    `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -flag=%0h",coll_pkt.flag),UVM_HIGH)
   end
 
-  if(rg_write_address.get_name == "TXFIFO") begin : TXFIFIO
+  if(rg.get_name == "SPIDUM") begin : SPIDUM
+    bit [31:0]dummy_local;
+    bit [15:0]dummy_wr_local;
+    int k;
+    int y;
+    coll_pkt.j =  coll_pkt.mosi_data_len - 'd1 ;
+    dummy_local = rg.get();
+    dummy_wr_local = dummy_local[31:16];
+    `uvm_info(get_type_name(), $sformatf("dummy_wr_local = %0h", dummy_wr_local),UVM_HIGH)
+    if(dummy_wr_local != 'd0) begin 
+      foreach(dummy_wr_local[i]) begin
+        coll_pkt.dummy_wr_data[i] = dummy_wr_local[i];
+        `uvm_info(get_type_name(), $sformatf("inside dummy_wr_local[%0d] = %0h",i, dummy_wr_local[i]),UVM_HIGH)
+        y = coll_pkt.data[coll_pkt.j-k] << 1;
+        coll_pkt.data[coll_pkt.j-k] = dummy_wr_local[i];
+        k=k+1;
+      end
+    end
+    `uvm_info(get_type_name(),$sformatf("Inside DUMMY_WR--final_data=%0h",coll_pkt.data),UVM_HIGH)
+    coll_pkt.flag = coll_pkt.flag + 1;
+    `uvm_info(get_type_name(), $sformatf("dummy_wr_data = %0h", coll_pkt.dummy_wr_data),UVM_HIGH)
+    `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -flag=%0h",coll_pkt.flag),UVM_HIGH)
+  end
+  
+  if(rg.get_name == "TXFIFO") begin : TXFIFIO
     bit [31:0]mosi_data_local;
     coll_pkt.j = 0;
-    mosi_data_local = rg_write_address.get();
+    mosi_data_local = rg.get();
     `uvm_info(get_type_name(), $sformatf("mosi_data_local = %0h", mosi_data_local),UVM_HIGH)
     `uvm_info(get_type_name(), $sformatf("spi_len[16:31] = %0h", coll_pkt.spi_length[31:16]),UVM_HIGH)
     for(int i=0; i<coll_pkt.spi_length[31:16]; i++) begin
@@ -139,99 +157,27 @@ function void axi4_master_collector::write(axi4_master_tx t);
       coll_pkt.data[coll_pkt.j+i] = mosi_data_local[i];
     end
     coll_pkt.flag = coll_pkt.flag + 1;
-    `uvm_info(get_type_name(), $sformatf("mosi_data = %0h", coll_pkt.mosi_data),UVM_HIGH)
+    `uvm_info(get_type_name(),$sformatf("mosi_data = %0h", coll_pkt.mosi_data),UVM_HIGH)
+    `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -final_data=%0h",coll_pkt.data),UVM_HIGH)
+    `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -flag=%0h",coll_pkt.flag),UVM_HIGH)
   end
 
-  if(coll_pkt.flag == 'd3) begin
+  if(coll_pkt.flag == 'd4) begin
     `uvm_info(get_type_name(),$sformatf("final_data=%0h",coll_pkt.data),UVM_HIGH)
-    axi4_master_write_address_coll_analysis_port.write(coll_pkt);
+    axi4_master_coll_analysis_port.write(coll_pkt);
+    
+    //Resetting the collector packet
+    coll_pkt.spi_length = 0;
+    coll_pkt.cmd_len = 0;
+    coll_pkt.addr_len = 0;
+    coll_pkt.mosi_data_len = 0;
+    coll_pkt.cmd = 0;
+    coll_pkt.addr = 0;
+    coll_pkt.mosi_data =0;
     coll_pkt.flag = 0;
+    coll_pkt.data = 0;
+    coll_pkt.j = 0;
   end
-  `uvm_info(get_type_name(),$sformatf("Req print = %0s",t.sprint()),UVM_HIGH)
-
-  
-//  //--------------------------------------------------------------------------------------------
-//  // READ_ADDRESS_CHANNEL collector
-//  //--------------------------------------------------------------------------------------------
-//  rg_read_address = map.get_reg_by_offset(t.araddr, t.tx_type);
-//  `uvm_info(get_type_name(), $sformatf("rg_read_address_name = %0s", rg_read_address.get_name()),UVM_HIGH)
-//  `uvm_info(get_type_name(), $sformatf("rg_read_address = %0h", rg_read_address.get_address()),UVM_HIGH)
-//  `uvm_info(get_type_name(), $sformatf("rg_read_address_data = %0h", rg_read_address.get()),UVM_HIGH)
-//  `uvm_info(get_type_name(), $sformatf("map_name = %0p", map.get_full_name()),UVM_HIGH)
-//
-//  if(rg_read_address.get_name == "SPILEN") begin : SPILEN_READ
-//    coll_pkt.spi_length = rg_read_address.get();  
-//    `uvm_info(get_type_name(), $sformatf("coll_pkt.spi_length = %0h", coll_pkt.spi_length),UVM_HIGH)
-//    coll_pkt.cmd_len = coll_pkt.spi_length[5:0];
-//    coll_pkt.addr_len = coll_pkt.spi_length[13:8];
-//    coll_pkt.mosi_data_len = coll_pkt.spi_length[31:16];
-//  end
-//
-//  if(rg_read_address.get_name == "SPICMD") begin : SPICMD_READ
-//    bit [31:0]cmd_local;
-//    int k;
-//    coll_pkt.j =  coll_pkt.cmd_len + coll_pkt.addr_len + coll_pkt.mosi_data_len - 1;
-//    cmd_local = rg_read_address.get();
-//    `uvm_info(get_type_name(), $sformatf("cmd_local = %0h", cmd_local),UVM_HIGH)
-//    `uvm_info(get_type_name(), $sformatf("spi_len[5:0] = %0h", coll_pkt.spi_length[5:0]),UVM_HIGH)
-//    foreach(cmd_local[i]) begin
-//      if('d31 - coll_pkt.spi_length[5:0] == i) begin
-//        break;
-//      end
-//      else begin
-//        coll_pkt.cmd[i] = cmd_local[i];
-//        coll_pkt.data[coll_pkt.j-k] = cmd_local[i];
-//        k=k+1;
-//      end
-//    end
-//    `uvm_info(get_type_name(),$sformatf("Inside CMD-final_data=%0h",coll_pkt.data),UVM_HIGH)
-//    coll_pkt.flag = coll_pkt.flag + 1;
-//    `uvm_info(get_type_name(), $sformatf("cmd_data = %0h", coll_pkt.cmd),UVM_HIGH)
-//  end
-//  
-//  if(rg_read_address.get_name == "SPIADR") begin : SPIADR_READ
-//    bit [31:0]addr_local;
-//    int k;
-//    coll_pkt.j =  coll_pkt.addr_len + coll_pkt.mosi_data_len - 1 ;
-//    addr_local = rg_read_address.get();
-//    `uvm_info(get_type_name(), $sformatf("addr_local = %0h", addr_local),UVM_HIGH)
-//    `uvm_info(get_type_name(), $sformatf("spi_len[13:8] = %0h", coll_pkt.spi_length[13:8]),UVM_HIGH)
-//    foreach(addr_local[i]) begin
-//      if('d31 - coll_pkt.spi_length[13:8] == i) begin
-//        break;
-//      end
-//      else begin
-//        coll_pkt.addr[i] = addr_local[i];
-//        `uvm_info(get_type_name(), $sformatf("inside addr_local[%0d] = %0h",i, addr_local[i]),UVM_HIGH)
-//        coll_pkt.data[coll_pkt.j-k] = addr_local[i];
-//        k=k+1;
-//      end
-//    end
-//    `uvm_info(get_type_name(),$sformatf("Inside ADR--final_data=%0h",coll_pkt.data),UVM_HIGH)
-//    coll_pkt.flag = coll_pkt.flag + 1;
-//    `uvm_info(get_type_name(), $sformatf("addr_data = %0h", coll_pkt.addr),UVM_HIGH)
-//  end
-//
-//  if(rg_read_address.get_name == "TXFIFO") begin : TXFIFIO_READ
-//    bit [31:0]mosi_data_local;
-//    coll_pkt.j = 0;
-//    mosi_data_local = rg_read_address.get();
-//    `uvm_info(get_type_name(), $sformatf("mosi_data_local = %0h", mosi_data_local),UVM_HIGH)
-//    `uvm_info(get_type_name(), $sformatf("spi_len[16:31] = %0h", coll_pkt.spi_length[31:16]),UVM_HIGH)
-//    for(int i=0; i<coll_pkt.spi_length[31:16]; i++) begin
-//      coll_pkt.mosi_data[i] = mosi_data_local[i];
-//      coll_pkt.data[coll_pkt.j+i] = mosi_data_local[i];
-//    end
-//    coll_pkt.flag = coll_pkt.flag + 1;
-//    `uvm_info(get_type_name(), $sformatf("mosi_data = %0h", coll_pkt.mosi_data),UVM_HIGH)
-//  end
-//
-//  if(coll_pkt.flag == 'd3) begin
-//    `uvm_info(get_type_name(),$sformatf("final_data=%0h",coll_pkt.data),UVM_HIGH)
-//    axi4_master_read_address_coll_analysis_port.write(coll_pkt);
-//    coll_pkt.flag = 0;
-//  end
-//  `uvm_info(get_type_name(),$sformatf("Req print = %0s",t.sprint()),UVM_HIGH)
 
 endfunction : write
 

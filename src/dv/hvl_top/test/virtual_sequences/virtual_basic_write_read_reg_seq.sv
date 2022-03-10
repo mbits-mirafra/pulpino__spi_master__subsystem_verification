@@ -1,12 +1,12 @@
-`ifndef PULPINO_SPI_MASTER_SUBSYSTEM_VIRTUAL_BASIC_WRITE_READ_REG_SEQ_INCLUDED_
-`define PULPINO_SPI_MASTER_SUBSYSTEM_VIRTUAL_BASIC_WRITE_READ_REG_SEQ_INCLUDED_
+`ifndef virtual_basic_write_read_reg_seq_INCLUDED_
+`define virtual_basic_write_read_reg_seq_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-// Class: pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq
+// Class: virtual_basic_write_read_reg_seq
 // <Descrsubsystemtion_here>
 //--------------------------------------------------------------------------------------------
-class pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq extends pulpino_spi_master_subsystem_virtual_base_seq;
-  `uvm_object_utils(pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq)
+class virtual_basic_write_read_reg_seq extends virtual_base_seq;
+  `uvm_object_utils(virtual_basic_write_read_reg_seq)
 
   axi4_master_basic_write_read_reg_seq axi4_master_basic_write_read_reg_seq_h;
   spi_fd_basic_slave_seq spi_fd_basic_slave_seq_h;
@@ -20,17 +20,17 @@ class pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq extends pulp
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
-  extern function new(string name = "pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq");
+  extern function new(string name = "virtual_basic_write_read_reg_seq");
   extern task body();
-endclass : pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq
+endclass : virtual_basic_write_read_reg_seq
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
 //
 // Parameters:
-//  name - pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq
+//  name - virtual_basic_write_read_reg_seq
 //--------------------------------------------------------------------------------------------
-function pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq::new(string name = "pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq");
+function virtual_basic_write_read_reg_seq::new(string name = "virtual_basic_write_read_reg_seq");
   super.new(name);
   write_read_key = new(1);
 endfunction : new
@@ -39,7 +39,7 @@ endfunction : new
 // Task - body
 // Creates a master reqister sequence and slave normal sequence
 //--------------------------------------------------------------------------------------------
-task pulpino_spi_master_subsystem_virtual_basic_write_read_reg_seq::body();
+task virtual_basic_write_read_reg_seq::body();
   super.body();
 
   fork

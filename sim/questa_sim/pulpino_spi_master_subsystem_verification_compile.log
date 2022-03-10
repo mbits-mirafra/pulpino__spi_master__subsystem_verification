@@ -1,0 +1,96 @@
+QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
+Start time: 11:34:49 on Mar 10,2022
+vlog -sv "+acc" "+cover" "+fcover" -l pulpino_spi_master_subsystem_verification_compile.log -f ../rtl_compile.f -f ../verif_compile.f 
+-- Compiling package config_pkg
+-- Compiling package apb_bus_sv_unit
+-- Importing package config_pkg
+-- Compiling interface APB_BUS
+-- Compiling package axi_bus_sv_unit
+-- Importing package config_pkg
+-- Compiling interface AXI_BUS
+-- Compiling module apb_spi_master
+-- Compiling module spi_master_apb_if
+-- Compiling module spi_master_clkgen
+-- Compiling module spi_master_controller
+-- Compiling module spi_master_fifo
+-- Compiling module spi_master_rx
+-- Compiling module spi_master_tx
+-- Compiling module periph_bus_wrap
+-- Compiling package axi4_globals_pkg
+-- Compiling package spi_globals_pkg
+-- Compiling package pulpino_spi_master_subsystem_global_pkg
+-- Compiling package axi4_master_pkg
+** Note: (vlog-2286) ../../src/dv/hvl_top/axi4_master_agent/axi4_master_pkg.sv(13): Using implicit +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package axi4_globals_pkg
+-- Compiling package spi_slave_pkg
+-- Importing package spi_globals_pkg
+-- Compiling package spi_master_defines_pkg
+-- Compiling package spi_master_uvm_pkg
+-- Compiling package axi4_reg_seq_pkg
+-- Importing package axi4_master_pkg
+-- Importing package spi_master_defines_pkg
+-- Importing package spi_master_uvm_pkg
+-- Compiling package axi4_master_seq_pkg
+-- Compiling package spi_slave_seq_pkg
+-- Importing package spi_slave_pkg
+-- Compiling package pulpino_spi_master_subsystem_env_pkg
+-- Importing package pulpino_spi_master_subsystem_global_pkg
+-- Compiling package pulpino_spi_master_subsystem_virtual_seq_pkg
+-- Importing package axi4_master_seq_pkg
+-- Importing package spi_slave_seq_pkg
+-- Importing package pulpino_spi_master_subsystem_env_pkg
+-- Importing package axi4_reg_seq_pkg
+-- Compiling package pulpino_spi_master_subsystem_test_pkg
+-- Importing package pulpino_spi_master_subsystem_virtual_seq_pkg
+-- Compiling package axi4_if_sv_unit
+-- Importing package axi4_globals_pkg
+-- Compiling interface axi4_if
+-- Compiling package spi_if_sv_unit
+-- Importing package spi_globals_pkg
+-- Compiling interface spi_if
+-- Compiling module axi4_master_agent_bfm
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Compiling package axi4_master_driver_bfm_sv_unit
+-- Importing package axi4_globals_pkg
+-- Compiling interface axi4_master_driver_bfm
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package axi4_master_pkg
+-- Compiling package axi4_master_monitor_bfm_sv_unit
+-- Importing package axi4_globals_pkg
+-- Compiling interface axi4_master_monitor_bfm
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package axi4_master_pkg
+-- Compiling module spi_slave_agent_bfm
+-- Importing package spi_globals_pkg
+-- Compiling package spi_slave_driver_bfm_sv_unit
+-- Importing package spi_globals_pkg
+-- Compiling interface spi_slave_driver_bfm
+-- Importing package spi_slave_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Compiling package spi_slave_monitor_bfm_sv_unit
+-- Importing package spi_globals_pkg
+-- Compiling interface spi_slave_monitor_bfm
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package spi_slave_pkg
+-- Compiling module hdl_top
+-- Compiling module hvl_top
+-- Importing package pulpino_spi_master_subsystem_test_pkg
+-- Importing package axi4_globals_pkg
+-- Importing package axi4_master_pkg
+-- Importing package pulpino_spi_master_subsystem_env_pkg
+-- Importing package pulpino_spi_master_subsystem_global_pkg
+-- Importing package spi_master_defines_pkg
+-- Importing package spi_master_uvm_pkg
+-- Importing package axi4_master_seq_pkg
+-- Importing package spi_slave_seq_pkg
+-- Importing package pulpino_spi_master_subsystem_virtual_seq_pkg
+-- Importing package axi4_reg_seq_pkg
+
+Top level modules:
+	apb_spi_master
+	periph_bus_wrap
+	hdl_top
+	hvl_top
+End time: 11:34:53 on Mar 10,2022, Elapsed time: 0:00:04
+Errors: 0, Warnings: 0

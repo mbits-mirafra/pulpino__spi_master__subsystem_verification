@@ -5,7 +5,7 @@
 // Class: virtual_reg_seq
 // <Description_here>
 //--------------------------------------------------------------------------------------------
-class virtual_reg_seq extends pulpino_spi_master_subsystem_virtual_base_seq;
+class virtual_reg_seq extends virtual_base_seq;
   `uvm_object_utils(virtual_reg_seq)
 
   //-------------------------------------------------------
