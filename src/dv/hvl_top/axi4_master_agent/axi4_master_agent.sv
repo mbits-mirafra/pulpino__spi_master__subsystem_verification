@@ -84,6 +84,7 @@ function void axi4_master_agent::build_phase(uvm_phase phase);
    axi4_master_cov_h = axi4_master_coverage ::type_id::create("axi4_master_cov_h",this);
   end
 
+  axi4_reg_adapter_h = axi4_master_adapter::type_id::create("axi4_reg_adapter_h");
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------

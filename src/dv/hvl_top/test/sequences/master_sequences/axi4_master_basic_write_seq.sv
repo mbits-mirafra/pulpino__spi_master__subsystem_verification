@@ -51,6 +51,12 @@ task axi4_master_basic_write_seq::body();
                             //req.awaddr == 32'h1A10_2004;
                             //req.pwdata == 32'h0000_0000;  
                             req.transfer_type == BLOCKING_WRITE;
+                            req.awburst == WRITE_INCR;
+                            req.wdata[0] == 64'ha5a5_a5a5a;
+                            req.awaddr == 32'h1A10_2008;
+                            req.awsize ==  WRITE_4_BYTES;
+                            req.awlen ==  8'b0;
+                            req.tx_type == WRITE;
                             //req.cont_write_read == 0;
                             //req.pwrite == WRITE;
                           }) begin  

@@ -98,7 +98,6 @@ interface axi4_master_monitor_bfm(input bit aclk, input bit aresetn,
     @(posedge aclk);
     while(awvalid!==1 || awready!==1)begin
       @(posedge aclk);
-      `uvm_info("FROM MASTER MON BFM",$sformatf("Inside while loop......"),UVM_HIGH)
     end    
     `uvm_info("FROM MASTER MON BFM",$sformatf("after while loop ......."),UVM_HIGH)
       

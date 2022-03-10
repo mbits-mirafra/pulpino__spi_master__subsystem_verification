@@ -283,16 +283,16 @@ task axi4_master_basic_write_read_reg_seq::body();
   // 
   // end
 
-  // Reading from the RX FIFO 
-  spi_master_reg_block.RXFIFO.read(.status(status)       ,
-                                    .value(rdata)        ,
-                                    .path(UVM_FRONTDOOR) ,
-                                    .map(spi_reg_map)    ,
-                                    .parent(this)
-                                  );                     
+  // MSHA: // Reading from the RX FIFO 
+  // MSHA: spi_master_reg_block.RXFIFO.read(.status(status)       ,
+  // MSHA:                                   .value(rdata)        ,
+  // MSHA:                                   .path(UVM_FRONTDOOR) ,
+  // MSHA:                                   .map(spi_reg_map)    ,
+  // MSHA:                                   .parent(this)
+  // MSHA:                                 );                     
 
-  `uvm_info("RX_FIFO_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.RXFIFO.get_full_name(),rdata),UVM_HIGH)
+  // MSHA: `uvm_info("RX_FIFO_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
+  // MSHA: spi_master_reg_block.RXFIFO.get_full_name(),rdata),UVM_HIGH)
  
 
   //-------------------------------------------------------

@@ -46,7 +46,7 @@ function uvm_sequence_item axi4_master_adapter::reg2bus( const ref uvm_reg_bus_o
     axi4_tx.arburst = READ_INCR;
     axi4_tx.araddr = rw.addr;
     axi4_tx.arsize = READ_4_BYTES;
-    axi4_tx.arlen = 8'h1;
+    axi4_tx.arlen = 8'h0;
     axi4_tx.tx_type = READ;
   end
 
@@ -59,7 +59,7 @@ function uvm_sequence_item axi4_master_adapter::reg2bus( const ref uvm_reg_bus_o
     end
     axi4_tx.awaddr = rw.addr;
     axi4_tx.awsize =  WRITE_4_BYTES;
-    axi4_tx.awlen =  8'b1;
+    axi4_tx.awlen =  8'b0;
     axi4_tx.tx_type = WRITE;
   end
 

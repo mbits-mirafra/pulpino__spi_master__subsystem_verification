@@ -60,7 +60,7 @@ task pulpino_spi_master_subsystem_virtual_basic_write_seq::body();
   join_none
  
 
-  repeat(2) begin
+  repeat(1) begin
     `uvm_info("master_vseq",$sformatf("started master vseq"),UVM_HIGH)
     write_key.get(1);
     axi4_master_basic_seq_h.start(p_sequencer.axi4_master_write_seqr_h);
