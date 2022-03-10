@@ -5,7 +5,7 @@
 // Class: axi4_simple_reg_test
 // <Description_here>
 //--------------------------------------------------------------------------------------------
-class axi4_simple_reg_test extends pulpino_spi_master_subsystem_base_test;
+class axi4_simple_reg_test extends base_test;
   `uvm_component_utils(axi4_simple_reg_test)
 
   //-------------------------------------------------------
