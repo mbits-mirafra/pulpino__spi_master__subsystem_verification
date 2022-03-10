@@ -31,8 +31,8 @@ package pulpino_spi_master_subsystem_test_pkg;
   //-------------------------------------------------------
   // Including the base_test files
   //-------------------------------------------------------
-  `include "pulpino_spi_master_subsystem_base_test.sv"
-  `include "pulpino_spi_master_subsystem_basic_write_read_reg_test.sv"
+  `include "base_test.sv"
+  `include "basic_write_read_reg_test.sv"
   `include "axi4_simple_reg_test.sv"
  
 endpackage : pulpino_spi_master_subsystem_test_pkg
