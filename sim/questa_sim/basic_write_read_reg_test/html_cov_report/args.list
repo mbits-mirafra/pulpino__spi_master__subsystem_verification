@@ -1,0 +1,5 @@
+-html
+basic_write_read_reg_test/basic_write_read_reg_test_coverage.ucdb
+-htmldir
+basic_write_read_reg_test/html_cov_report
+-details

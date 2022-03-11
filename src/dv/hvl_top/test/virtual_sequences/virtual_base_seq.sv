@@ -9,7 +9,7 @@ class virtual_base_seq extends uvm_sequence;
   `uvm_object_utils(virtual_base_seq)
   
   //Declaring p_sequencer
-  `uvm_declare_p_sequencer(pulpino_spi_master_subsystem_virtual_sequencer)
+  `uvm_declare_p_sequencer(virtual_sequencer)
   
   //variable : apb_master_vsqr_h
   //Declaring handle to the virtual sequencer

@@ -91,7 +91,7 @@ task basic_write_read_reg_test::run_phase(uvm_phase phase);
 
   phase.raise_objection(this);
 
-  virtual_basic_write_read_reg_seq_h.start(pulpino_spi_master_subsystem_env_h.pulpino_spi_master_subsystem_virtual_seqr_h); 
+  virtual_basic_write_read_reg_seq_h.start(env_h.virtual_seqr_h); 
 
   phase.drop_objection(this);
 

@@ -22,7 +22,7 @@
 ../../src/dv/hvl_top/test/sequences/master_sequences/reg_sequences/axi4_master_reg_seq_pkg.sv
 ../../src/dv/hvl_top/test/sequences/master_sequences/axi4_master_seq_pkg.sv
 ../../src/dv/hvl_top/test/sequences/slave_sequences/spi_slave_seq_pkg.sv
-../../src/dv/hvl_top/env/pulpino_spi_master_subsystem_env_pkg.sv
+../../src/dv/hvl_top/env/env_pkg.sv
 ../../src/dv/hvl_top/test/virtual_sequences/pulpino_spi_master_subsystem_virtual_seq_pkg.sv
 ../../src/dv/hvl_top/test/pulpino_spi_master_subsystem_test_pkg.sv
 ../../src/dv/hdl_top/axi4_interface/axi4_if.sv
