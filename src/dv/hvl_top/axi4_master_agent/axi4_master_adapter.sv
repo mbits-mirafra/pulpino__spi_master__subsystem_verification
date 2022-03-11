@@ -50,19 +50,21 @@ function uvm_sequence_item axi4_master_adapter::reg2bus( const ref uvm_reg_bus_o
     axi4_tx.tx_type = READ;
   end
 
+  `uvm_info("MSHA_DEBUG", $sformatf("\n rw.address = %0x rw.data = %0x", rw.addr, rw.data), UVM_LOW);
+
   if ( rw.kind == UVM_WRITE ) 
   begin
     axi4_tx.transfer_type =  BLOCKING_WRITE;
     axi4_tx.awburst = WRITE_INCR;
-    foreach(rw.data[i]) begin
-      axi4_tx.wdata[i] = rw.data[i];
-    end
+    //foreach(rw.data[i]) begin
+    //  axi4_tx.wdata[i] = rw.data[i];
+    //end
+    axi4_tx.wdata[0] = rw.data;
     axi4_tx.awaddr = rw.addr;
     axi4_tx.awsize =  WRITE_4_BYTES;
     axi4_tx.awlen =  8'b0;
     axi4_tx.tx_type = WRITE;
   end
-
  
   // Assuming these address range falls in the slave0 domain
   // TODO(mshariff): Need to add more logic to be intelligent to pick correct pselx value
@@ -100,14 +102,17 @@ function void axi4_master_adapter::bus2reg( uvm_sequence_item bus_item,
       rw.data[i] = axi4_tx.rdata[i];
     end
     rw.status = UVM_IS_OK;
+    rw.kind = UVM_READ;
   end
 
   if(axi4_tx.tx_type == WRITE) begin
     rw.addr = axi4_tx.awaddr;
-    foreach(axi4_tx.wdata[i]) begin
-      rw.data[i] = axi4_tx.wdata[i];
-    end
+    rw.data = axi4_tx.wdata[0];
     rw.status = UVM_IS_OK;
+    rw.kind = UVM_WRITE;
+    //foreach(rw.data[i]) begin
+    //  axi4_tx.wdata[i] = rw.data[i];
+    //end
   end
 
   `uvm_info(get_type_name(), $sformatf("The converted bus2reg packet is %s\n",axi4_tx.sprint()), UVM_HIGH);

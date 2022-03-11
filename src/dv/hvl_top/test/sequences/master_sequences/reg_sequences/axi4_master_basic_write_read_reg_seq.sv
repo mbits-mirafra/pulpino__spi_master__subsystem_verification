@@ -53,6 +53,9 @@ task axi4_master_basic_write_read_reg_seq::body();
     wdata = (wdata & (~ `MASK_CLKDIV_CLKDIV)) | (clkdiv_value << `POS_CLKDIV_CLKDIV);
   end
 
+  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.CLKDIV.get_full_name(),wdata),UVM_HIGH)
+
   //Writing into the Clockdiv Register
   spi_master_reg_block.CLKDIV.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -60,9 +63,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.CLKDIV.get_full_name(),wdata),UVM_HIGH)
 
 //  // Reading from the Clockdiv Register
 //  spi_master_reg_block.CLKDIV.read(.status(status)       ,
@@ -87,6 +87,9 @@ task axi4_master_basic_write_read_reg_seq::body();
     wdata = (wdata & (~ `MASK_SPICMD_SPICMD)) | (spi_cmd << `POS_SPICMD_SPICMD);
   end
 
+  `uvm_info("SPI_CMD_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.SPICMD.get_full_name(),wdata),UVM_HIGH)
+
   //Writing into the SPICMD Register
   spi_master_reg_block.SPICMD.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -94,9 +97,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("SPI_CMD_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.SPICMD.get_full_name(),wdata),UVM_HIGH)
 
 //  // Reading from the SPICMD Register
 //  spi_master_reg_block.SPICMD.read(.status(status)       ,
@@ -120,6 +120,9 @@ task axi4_master_basic_write_read_reg_seq::body();
     wdata = (wdata & (~ `MASK_SPIADR_SPIADR)) | (spi_adr << `POS_SPIADR_SPIADR);
   end
   
+  `uvm_info("SPI_ADDR_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.SPIADR.get_full_name(),wdata),UVM_HIGH)
+
   //Writing into the SPI_ADDR Register
   spi_master_reg_block.SPIADR.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -127,9 +130,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("SPI_ADDR_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.SPIADR.get_full_name(),wdata),UVM_HIGH)
 
 //  // Reading from the SPI_ADDR Register
 //  spi_master_reg_block.SPIADR.read(.status(status)       ,
@@ -172,6 +172,9 @@ task axi4_master_basic_write_read_reg_seq::body();
 
   end
 
+  `uvm_info("SPI_LEN_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.SPILEN.get_full_name(),wdata),UVM_HIGH)
+
   //Writing into the SPI_LEN Register
   spi_master_reg_block.SPILEN.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -179,9 +182,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("SPI_LEN_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.SPILEN.get_full_name(),wdata),UVM_HIGH)
 
 //  // Reading from the SPI_LEN Register
 //  spi_master_reg_block.SPILEN.read(.status(status)       ,
@@ -218,6 +218,9 @@ task axi4_master_basic_write_read_reg_seq::body();
 
   end
 
+  `uvm_info("DUMMY_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.SPIDUM.get_full_name(),wdata),UVM_HIGH)
+
  //Writing into the SPI_DUMMY Register
   spi_master_reg_block.SPIDUM.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -225,9 +228,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("DUMMY_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.SPIDUM.get_full_name(),wdata),UVM_HIGH)
 
 //  // Reading from the SPI_DUMMY Register
 //  spi_master_reg_block.SPIDUM.read(.status(status)       ,
@@ -256,6 +256,9 @@ task axi4_master_basic_write_read_reg_seq::body();
   
   end
 
+  `uvm_info("TX_FIFO_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.TXFIFO.get_full_name(),wdata),UVM_HIGH)
+
   //Writing into the TX FIFO
   spi_master_reg_block.TXFIFO.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -263,9 +266,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("TX_FIFO_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.TXFIFO.get_full_name(),wdata),UVM_HIGH)
 
   //-------------------------------------------------------
   // RX FIFO
@@ -323,6 +323,9 @@ task axi4_master_basic_write_read_reg_seq::body();
   end
  
   
+  `uvm_info("INTERUPT_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s DATA = 32'h%0h",
+  spi_master_reg_block.INTCFG.get_full_name(),wdata),UVM_HIGH)
+
   //Writing into the INTERUPT Register
   //wdata = 32'hDF1F_1F1F;
   spi_master_reg_block.INTCFG.write(.status(status)      ,
@@ -331,9 +334,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("INTERUPT_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s",
-  spi_master_reg_block.INTCFG.get_full_name()),UVM_HIGH)
 
 //  `uvm_info("INTERUPT_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
 //  spi_master_reg_block.INTCFG.get_full_name(),wdata),UVM_HIGH)
@@ -356,16 +356,20 @@ task axi4_master_basic_write_read_reg_seq::body();
   // Writing into the register
   begin
     bit [3:0] cs_value;
-    cs_value = 4'b0;
+    cs_value = 4'b1;
     `uvm_info(get_type_name(), $sformatf("Write :: Register cs_value = %0b",cs_value), UVM_LOW)
 
     // Setting a value 
     wdata = (wdata & (~ `MASK_STATUS_CS)) | (cs_value << `POS_STATUS_CS);
     // Setting the required bits
-    wdata = wdata | `MASK_STATUS_WR | `MASK_STATUS_RD; 
+    wdata = wdata | `MASK_STATUS_WR; 
     // Clearing the required bits
-    wdata = wdata & (~`MASK_STATUS_QRD) & (~`MASK_STATUS_QWR);
+    wdata = wdata & (~`MASK_STATUS_QRD) & (~`MASK_STATUS_QWR)
+                  & (~`MASK_STATUS_SRST) & (`MASK_STATUS_RD);
   end
+
+  `uvm_info("STATUS_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.STATUS.get_full_name(),wdata),UVM_HIGH)
 
   spi_master_reg_block.STATUS.write(.status(status)      ,
                                     .value(wdata)        ,
@@ -373,9 +377,6 @@ task axi4_master_basic_write_read_reg_seq::body();
                                     .map(spi_reg_map)    ,
                                     .parent(this)
                                   );                     
-
-  `uvm_info("STATUS_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.STATUS.get_full_name(),wdata),UVM_HIGH)
 
 //  // Reading from the Status Register
 //  spi_master_reg_block.STATUS.read(.status(status)       ,
