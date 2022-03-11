@@ -24,7 +24,7 @@ interface AXI_BUS
     parameter AXI_ADDR_WIDTH = 32,
     parameter AXI_DATA_WIDTH = 64,
     parameter AXI_ID_WIDTH   = 4,
-    parameter AXI_USER_WIDTH = 4
+    parameter AXI_USER_WIDTH = 1
 );
 
   localparam AXI_STRB_WIDTH = AXI_DATA_WIDTH/8;
