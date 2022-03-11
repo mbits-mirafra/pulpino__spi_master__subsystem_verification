@@ -1,11 +1,11 @@
-`ifndef PULPINO_SPI_MASTER_SUBSYSTEM_ENV_PKG_INCLUDED_
-`define PULPINO_SPI_MASTER_SUBSYSTEM_ENV_PKG_INCLUDED_
+`ifndef ENV_PKG_INCLUDED_
+`define ENV_PKG_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-// Package: pulpino_spi_master_subsystem_env_pkg
+// Package: env_pkg
 // Includes all the files related to pulpino_spi_master_subsystem env
 //--------------------------------------------------------------------------------------------
-package pulpino_spi_master_subsystem_env_pkg;
+package env_pkg;
   
   //-------------------------------------------------------
   // Importing uvm packages
@@ -27,14 +27,14 @@ package pulpino_spi_master_subsystem_env_pkg;
   //-------------------------------------------------------
   // Including the required files
   //-------------------------------------------------------
-  `include "pulpino_spi_master_subsystem_env_config.sv"
+  `include "env_config.sv"
   `include "axi4_reg_predictor.sv"
-  `include "pulpino_spi_master_subsystem_virtual_sequencer.sv"
-  `include "pulpino_spi_master_subsystem_scoreboard.sv"
+  `include "virtual_sequencer.sv"
+  `include "scoreboard.sv"
   `include "axi4_master_collector.sv"
   `include "spi_slave_collector.sv"
-  `include "pulpino_spi_master_subsystem_env.sv"
+  `include "env.sv"
 
-endpackage : pulpino_spi_master_subsystem_env_pkg
+endpackage : env_pkg
 
 `endif

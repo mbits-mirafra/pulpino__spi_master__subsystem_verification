@@ -17,7 +17,7 @@ package pulpino_spi_master_subsystem_virtual_seq_pkg;
   import spi_slave_pkg::*;
   import axi4_master_seq_pkg::*;
   import spi_slave_seq_pkg::*;
-  import pulpino_spi_master_subsystem_env_pkg::*;
+  import env_pkg::*;
   import axi4_reg_seq_pkg::*;
 
   //-------------------------------------------------------
@@ -30,6 +30,24 @@ package pulpino_spi_master_subsystem_virtual_seq_pkg;
   
   // Register virtual sequences
   `include "virtual_reg_seq.sv"
+  `include "virtual_std_mode_write_0_cmd_0_addr_32_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_0_cmd_0_addr_16_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_0_cmd_16_addr_16_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_16_cmd_16_addr_16_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_0_cmd_32_addr_32_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_32_cmd_32_addr_32_data_length_reg_seq.sv"
+
+  `include "virtual_std_mode_write_16_cmd_16_addr_32_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_8_cmd_32_addr_32_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_8_cmd_8_addr_32_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_8_cmd_16_addr_32_data_length_reg_seq.sv"
+  `include "virtual_std_mode_write_even_clkdiv_reg_seq.sv"
+
+  `include "virtual_spi_modes_clkdiv_dummy_cycles_cross_reg_seq.sv"
+  `include "virtual_spi_modes_transfer_length_interupts_cross_reg_seq.sv"
+
+  `include "virtual_rand_reg_seq.sv"
+
 
 endpackage : pulpino_spi_master_subsystem_virtual_seq_pkg
 

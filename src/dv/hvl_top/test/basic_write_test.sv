@@ -46,7 +46,7 @@ task basic_write_test::run_phase(uvm_phase phase);
 
   `uvm_info(get_type_name(),$sformatf("basic_write_test"),UVM_LOW);
   phase.raise_objection(this);
-  virtual_basic_write_seq_h.start(pulpino_spi_master_subsystem_env_h.pulpino_spi_master_subsystem_virtual_seqr_h); 
+  virtual_basic_write_seq_h.start(env_h.virtual_seqr_h); 
   phase.drop_objection(this);
 
 endtask : run_phase

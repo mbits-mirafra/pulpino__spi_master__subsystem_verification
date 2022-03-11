@@ -93,7 +93,7 @@ task axi4_simple_reg_test::run_phase(uvm_phase phase);
 
   phase.raise_objection(this);
 
-  reg_vseq_h.start(pulpino_spi_master_subsystem_env_h.pulpino_spi_master_subsystem_virtual_seqr_h); 
+  reg_vseq_h.start(env_h.virtual_seqr_h); 
 
   phase.drop_objection(this);
 
