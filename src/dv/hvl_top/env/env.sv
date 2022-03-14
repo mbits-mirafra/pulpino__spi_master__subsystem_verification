@@ -124,7 +124,7 @@ function void env::connect_phase(uvm_phase phase);
   end
 
   axi4_master_coll_h.axi4_master_coll_analysis_port.connect(scoreboard_h
-                                                   .axi4_master_write_address_analysis_fifo.analysis_export);
+                                                   .axi4_master_analysis_fifo.analysis_export);
   spi_slave_coll_h.spi_slave_coll_analysis_port.connect(scoreboard_h
                                                .spi_slave_analysis_fifo.analysis_export);
 
