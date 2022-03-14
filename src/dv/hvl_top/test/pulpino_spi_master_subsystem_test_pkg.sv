@@ -52,7 +52,7 @@ package pulpino_spi_master_subsystem_test_pkg;
   `include "spi_modes_clkdiv_dummy_cycles_cross_reg_test.sv"
   `include "spi_modes_transfer_length_interupts_cross_reg_test.sv"
 
-  `include "rand_reg_test.sv"
+  //`include "rand_reg_test.sv"
 
   //`include "negitive_reg_test.sv"
 
