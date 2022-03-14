@@ -8,6 +8,9 @@
 class axi4_master_collector extends uvm_component;
   `uvm_component_utils(axi4_master_collector)
 
+  //-------------------------------------------------------
+  //analysis_port declaration
+  //-------------------------------------------------------
   uvm_analysis_port#(collector_packet_s) axi4_master_coll_analysis_port;
   uvm_analysis_imp#(axi4_master_tx, axi4_master_collector) axi4_master_coll_imp_port;
 
