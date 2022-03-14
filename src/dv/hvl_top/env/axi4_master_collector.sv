@@ -204,6 +204,11 @@ function void axi4_master_collector::write(axi4_master_tx t);
 
   if(coll_pkt.flag == 'd4) begin
     `uvm_info(get_type_name(),$sformatf("collector_final_data=%0h",coll_pkt.data),UVM_HIGH)
+    
+    `uvm_info(get_type_name(),$sformatf("cmd=%0d, addr=%0d mosi_data_len=%0d dummy_wr_data=%0d",coll_pkt.cmd_len,coll_pkt.addr_len,coll_pkt.mosi_data_len,coll_pkt.dummy_wr_data),UVM_HIGH)
+    coll_pkt.data_width = coll_pkt.cmd_len + coll_pkt.addr_len + coll_pkt.mosi_data_len + coll_pkt.dummy_wr_data;
+    `uvm_info(get_type_name(),$sformatf("final_data_bits=%0d",coll_pkt.data_width),UVM_HIGH)
+
     axi4_master_coll_analysis_port.write(coll_pkt);
 
     //Resetting the collector packet
