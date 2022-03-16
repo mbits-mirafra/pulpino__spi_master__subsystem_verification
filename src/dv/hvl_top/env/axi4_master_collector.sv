@@ -184,20 +184,8 @@ function void axi4_master_collector::write(axi4_master_tx t);
     `uvm_info(get_type_name(), $sformatf("spi_len[16:31] = %0h", coll_pkt.spi_length[31:16]),UVM_HIGH)
     //for(int i=0; i<coll_pkt.spi_length[31:16]; i++) begin
     foreach(mosi_data_local[i]) begin
-      //if('d31 - coll_pkt.spi_length[31:16] == i) begin
-      //  break;
-      //end
-      //else begin
-      //  coll_pkt.mosi_data[i] = mosi_data_local[i];
-      //  if(k != 0) begin
-      //    coll_pkt.data[coll_pkt.j+i] = 0;
-      //    k--;
-      //  end
-      //  else begin
-          coll_pkt.data[coll_pkt.j+i] = mosi_data_local[i];
-      //  end
-      end
-    //end
+      coll_pkt.data[coll_pkt.j+i] = mosi_data_local[i];
+    end
     coll_pkt.flag = coll_pkt.flag + 1;
     `uvm_info(get_type_name(), $sformatf("mosi_data = %0h", coll_pkt.mosi_data),UVM_HIGH)
     `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -final_data=%0h",coll_pkt.data),UVM_HIGH)

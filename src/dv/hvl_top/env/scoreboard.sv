@@ -176,17 +176,22 @@ function void scoreboard::check_phase(uvm_phase phase);
 	  `uvm_info (get_type_name(), $sformatf ("all mosi comparisions are succesful"),UVM_HIGH);
   end
   else begin
+    if (( byte_data_cmp_verified_master_awdata_slave_mosi_count == 0) && ( byte_data_cmp_failed_master_awdata_slave_mosi_count== 0)) begin
+      `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
+    end
     `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_verified_master_awdata_slave_mosi_count:%0d",
                                              byte_data_cmp_verified_master_awdata_slave_mosi_count),UVM_HIGH);
 	  `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_failed_master_awdata_slave_mosi_count: %0d", 
                                              byte_data_cmp_failed_master_awdata_slave_mosi_count),UVM_HIGH);
-    `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
   end
     
   if (( byte_data_cmp_verified_bit_count!= 0)&&( byte_data_cmp_failed_bit_count== 0)) begin
 	  `uvm_info (get_type_name(), $sformatf ("all bit count comparisions are succesful"),UVM_HIGH);
   end
   else begin
+    if (( byte_data_cmp_verified_bit_count == 0) && ( byte_data_cmp_failed_bit_count== 0)) begin
+      `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
+    end
     `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_verified_bit_count:%0d",
                                              byte_data_cmp_verified_bit_count),UVM_HIGH);
 	  `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_failed_bit_count: %0d", 
