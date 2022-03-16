@@ -205,7 +205,7 @@ task axi4_master_std_mode_write_0_cmd_16_addr_16_data_length_reg_seq::body();
     bit [15:0] dummy_wr;
     bit [15:0] dummy_rd;
 
-    dummy_wr = 16'h0002;
+    dummy_wr = 16'h8;
     dummy_rd = 16'h0000;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register dummy_wr  = %0h",dummy_wr) , UVM_LOW)
@@ -357,7 +357,7 @@ task axi4_master_std_mode_write_0_cmd_16_addr_16_data_length_reg_seq::body();
   // Writing into the register
   begin
     bit [3:0] cs_value;
-    cs_value = 4'b1;
+    cs_value =SLAVE_0;
     `uvm_info(get_type_name(), $sformatf("Write :: Register cs_value = %0b",cs_value), UVM_LOW)
  
     // Setting a value 

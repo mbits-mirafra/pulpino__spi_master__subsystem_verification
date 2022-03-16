@@ -75,7 +75,7 @@ task axi4_simple_write_read_reg_seq::body();
   // Writing into the register
   begin
     bit [3:0] cs_value;
-    cs_value = 4'b1;
+    cs_value = SLAVE_0;
     `uvm_info(get_type_name(), $sformatf("Write :: Register cs_value = %0b",cs_value), UVM_LOW)
 
     // Setting a value 

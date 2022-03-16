@@ -232,7 +232,7 @@ task axi4_master_rand_reg_seq::body();
     spi_master_reg_block.SPIDUM.update(status);
 
     //wdata = spi_master_reg_block.randomize();
-    dummy_wr = 16'hffff;
+    dummy_wr = 16'h8;
     dummy_rd = 16'hffff;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register dummy_wr  = %0h",dummy_wr) , UVM_LOW)
@@ -383,7 +383,7 @@ task axi4_master_rand_reg_seq::body();
   // Writing into the register
   begin
     bit [3:0] cs_value;
-    cs_value = 4'b1;
+    cs_value = SLAVE_0;
     `uvm_info(get_type_name(), $sformatf("Write :: Register cs_value = %0b",cs_value), UVM_LOW)
     
     //wdata  = $urandom();

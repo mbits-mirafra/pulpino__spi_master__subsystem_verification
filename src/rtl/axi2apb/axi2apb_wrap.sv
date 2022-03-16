@@ -14,7 +14,7 @@
 module axi2apb_wrap
 #(
     parameter AXI_ADDR_WIDTH   = 32,
-    parameter AXI_DATA_WIDTH   = 64,
+    parameter AXI_DATA_WIDTH   = 32,
     parameter AXI_USER_WIDTH   = 1,
     parameter AXI_ID_WIDTH     = 4,
     parameter APB_ADDR_WIDTH   = 32
