@@ -13,8 +13,9 @@ class virtual_rand_reg_seq extends virtual_base_seq;
 
    //Variable : write_key
   //Used to provide access to perform write operation
-  semaphore write_key;
+  //semaphore write_key;
 
+  event wr_rd;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -31,7 +32,7 @@ endclass : virtual_rand_reg_seq
 //--------------------------------------------------------------------------------------------
 function virtual_rand_reg_seq::new(string name = "virtual_rand_reg_seq");
   super.new(name);
-  write_key = new(1);
+//  write_key = new(1);
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ task virtual_rand_reg_seq::body();
       //write_key.get(1);
       spi_fd_basic_slave_seq_h = spi_fd_basic_slave_seq::type_id::create("spi_fd_basic_slave_seq_h");
       spi_fd_basic_slave_seq_h.start(p_sequencer.spi_slave_seqr_h);
+      -> wr_rd;
      // write_key.put(1);
       `uvm_info("slave_vseq",$sformatf("ended slave vseq"),UVM_HIGH)
     end
@@ -58,8 +60,8 @@ task virtual_rand_reg_seq::body();
    axi4_master_rand_reg_seq_h = axi4_master_rand_reg_seq::type_id::create("axi4_master_rand_reg_seq_h");
    axi4_master_rand_reg_seq_h.model = p_sequencer.env_config_h.spi_master_reg_block;
    axi4_master_rand_reg_seq_h.start(p_sequencer.axi4_master_write_seqr_h);
+   wait(wr_rd.triggered);
   // write_key.put(1);
-   #50us;
    `uvm_info("master_vseq",$sformatf("ended master vseq"),UVM_HIGH)
  end
  endtask : body
