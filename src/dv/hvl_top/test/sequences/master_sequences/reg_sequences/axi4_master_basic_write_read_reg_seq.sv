@@ -235,7 +235,7 @@ task axi4_master_basic_write_read_reg_seq::body();
     bit [15:0] dummy_wr;
     bit [15:0]  dummy_rd;
 
-    dummy_wr = 16'hffff;
+    dummy_wr = 16'h8;
     dummy_rd = 16'hffff;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register dummy_wr  = %0h",dummy_wr) , UVM_LOW)

@@ -32,8 +32,8 @@
 module AXI_2_APB
 #(
     parameter AXI4_ADDRESS_WIDTH = 32,
-    parameter AXI4_RDATA_WIDTH   = 64,
-    parameter AXI4_WDATA_WIDTH   = 64,
+    parameter AXI4_RDATA_WIDTH   = 32,
+    parameter AXI4_WDATA_WIDTH   = 32,
     parameter AXI4_ID_WIDTH      = 16,
     parameter AXI4_USER_WIDTH    = 10,
     parameter AXI_NUMBYTES       = AXI4_WDATA_WIDTH/8,

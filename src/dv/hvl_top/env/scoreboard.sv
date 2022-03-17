@@ -135,8 +135,8 @@ task scoreboard::run_phase(uvm_phase phase);
     end
 
     else begin
-      `uvm_info(get_type_name(),$sformatf("axi4_awdata from axi4_master and master_out_slave_in from slave is not equal"),UVM_HIGH);
-      `uvm_info("SB_axi4_DATA_MATCHED WITH MOSI0", $sformatf("Master axi4_DATA = 'h%0x and Slave SPI_DATA = 'h%0x",axi4_data,spi_data), UVM_HIGH); 
+      `uvm_error(get_type_name(),$sformatf("axi4_awdata from axi4_master and master_out_slave_in from slave is not equal"));
+      `uvm_error("SB_axi4_DATA_NOT_MATCHED WITH MOSI0", $sformatf("Master axi4_DATA = 'h%0x and Slave SPI_DATA = 'h%0x",axi4_data,spi_data)); 
       byte_data_cmp_failed_master_awdata_slave_mosi_count++;
     end
 
@@ -146,8 +146,8 @@ task scoreboard::run_phase(uvm_phase phase);
       byte_data_cmp_verified_bit_count++;
     end
     else begin
-      `uvm_info(get_type_name(),$sformatf("Number of bits from axi4 packet and spi packet is not equal"),UVM_HIGH);
-      `uvm_info("NUMBER_OF_BITS_NOT_MATCHED",$sformatf("axi4_data_width=%0d,spi_data_width=%0d",axi4_data_width,spi_data_width),UVM_HIGH);
+      `uvm_error(get_type_name(),$sformatf("Number of bits from axi4 packet and spi packet is not equal"));
+      `uvm_error("NUMBER_OF_BITS_NOT_MATCHED",$sformatf("axi4_data_width=%0d,spi_data_width=%0d",axi4_data_width,spi_data_width));
       byte_data_cmp_failed_bit_count++;
     end
 
@@ -176,17 +176,22 @@ function void scoreboard::check_phase(uvm_phase phase);
 	  `uvm_info (get_type_name(), $sformatf ("all mosi comparisions are succesful"),UVM_HIGH);
   end
   else begin
-    `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_verified_master_awdata_slave_mosi_count:%0d",
-                                             byte_data_cmp_verified_master_awdata_slave_mosi_count),UVM_HIGH);
-	  `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_failed_master_awdata_slave_mosi_count: %0d", 
-                                             byte_data_cmp_failed_master_awdata_slave_mosi_count),UVM_HIGH);
-    `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
+    if (( byte_data_cmp_verified_master_awdata_slave_mosi_count == 0) && ( byte_data_cmp_failed_master_awdata_slave_mosi_count== 0)) begin
+      `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
+    end
+ 
+    if (( byte_data_cmp_verified_master_awdata_slave_mosi_count == 0) && ( byte_data_cmp_failed_master_awdata_slave_mosi_count== 0)) begin
+      `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
+    end
   end
     
   if (( byte_data_cmp_verified_bit_count!= 0)&&( byte_data_cmp_failed_bit_count== 0)) begin
 	  `uvm_info (get_type_name(), $sformatf ("all bit count comparisions are succesful"),UVM_HIGH);
   end
   else begin
+    if (( byte_data_cmp_verified_bit_count == 0) && ( byte_data_cmp_failed_bit_count== 0)) begin
+      `uvm_error (get_type_name(), $sformatf ("comparisions of mosi not happened"));
+    end
     `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_verified_bit_count:%0d",
                                              byte_data_cmp_verified_bit_count),UVM_HIGH);
 	  `uvm_info (get_type_name(), $sformatf (" byte_data_cmp_failed_bit_count: %0d", 

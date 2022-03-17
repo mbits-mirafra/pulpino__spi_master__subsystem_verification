@@ -13,4 +13,7 @@
 # //  18 U.S.C. Section 1905.
 # //
 # basic_write_read_reg_test/waveform.wlf opened as dataset "waveform"
-add wave -position insertpoint waveform:/hdl_top/DUT/*
+add wave -position insertpoint waveform:/hdl_top/axi_intf/*
+add wave -position insertpoint waveform:/hdl_top/DUT/AXI2APB_BRIDGE/apb_master/*
+add wave -position insertpoint waveform:/hdl_top/DUT/AXI2APB_BRIDGE/axi_slave/*
+add wave -position insertpoint waveform:/hdl_top/DUT/AXI2APB_BRIDGE/apb_master/*

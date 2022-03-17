@@ -18,6 +18,7 @@ class axi4_master_collector extends uvm_component;
 
   collector_packet_s coll_pkt;
 
+  collector_packet_s coll_pkt_empty;
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -172,32 +173,31 @@ function void axi4_master_collector::write(axi4_master_tx t);
   if(rg.get_name == "TXFIFO") begin : TXFIFIO
 
     bit [31:0]mosi_data_local;
+    int mosi_data_len_local;
 
     int k;
     coll_pkt.j = 0;
     
-    k = coll_pkt.dummy_wr_data;
+    k = 31;
 
     mosi_data_local = rg.get();
     `uvm_info(get_type_name(), $sformatf("mosi_data_local = %0h", mosi_data_local),UVM_HIGH)
 
     `uvm_info(get_type_name(), $sformatf("spi_len[16:31] = %0h", coll_pkt.spi_length[31:16]),UVM_HIGH)
-    //for(int i=0; i<coll_pkt.spi_length[31:16]; i++) begin
-    foreach(mosi_data_local[i]) begin
-      //if('d31 - coll_pkt.spi_length[31:16] == i) begin
-      //  break;
-      //end
-      //else begin
-      //  coll_pkt.mosi_data[i] = mosi_data_local[i];
-      //  if(k != 0) begin
-      //    coll_pkt.data[coll_pkt.j+i] = 0;
-      //    k--;
-      //  end
-      //  else begin
-          coll_pkt.data[coll_pkt.j+i] = mosi_data_local[i];
-      //  end
+    mosi_data_len_local = coll_pkt.mosi_data_len;
+
+    for(int i=coll_pkt.mosi_data_len-1; i>=0; i--) begin
+    //`uvm_info(get_type_name(), $sformatf("spi_len[16:31] = %0h", coll_pkt.spi_length[31:16]),UVM_HIGH)
+    //foreach(mosi_data_local[i]) begin
+      if(mosi_data_len_local != 0 && mosi_data_len_local >0) begin
+        coll_pkt.mosi_data[i] = mosi_data_local[i];
+    `uvm_info(get_type_name(), $sformatf("collector packet.data(%0d)=%0h",i,mosi_data_local[i]),UVM_HIGH)
+        //coll_pkt.data = coll_pkt.data << 1;
+        coll_pkt.data[i] = mosi_data_local[k];
+        mosi_data_len_local = mosi_data_len_local - 1;
+        k--;
       end
-    //end
+    end
     coll_pkt.flag = coll_pkt.flag + 1;
     `uvm_info(get_type_name(), $sformatf("mosi_data = %0h", coll_pkt.mosi_data),UVM_HIGH)
     `uvm_info(get_type_name(),$sformatf("Inside TX_FIFO -final_data=%0h",coll_pkt.data),UVM_HIGH)
@@ -214,6 +214,8 @@ function void axi4_master_collector::write(axi4_master_tx t);
     `uvm_info(get_type_name(),$sformatf("final_data_bits=%0d",coll_pkt.data_width),UVM_HIGH)
 
     axi4_master_coll_analysis_port.write(coll_pkt);
+
+    coll_pkt = coll_pkt_empty;
 
     //Resetting the collector packet
     coll_pkt.spi_length = 0;
