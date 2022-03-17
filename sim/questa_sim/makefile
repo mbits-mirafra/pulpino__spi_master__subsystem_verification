@@ -55,13 +55,13 @@ usage:
 	echo "make simulate test=<test_name> uvm_verbosity=<VERBOSITY_LEVEL>";
 	echo "";
 	echo "Example:":
-	echo "make simulate test=pulpino_spi_master_subsystem_base_test uvm_verbosity=UVM_HIGH";
+	echo "make simulate test=basic_write_read_reg_test uvm_verbosity=UVM_HIGH";
 	echo "";
 	echo "To run regression:"
 	echo "make regression testlist_name=<regression_testlist_name.list>";
 	echo "";
 	echo "Example:":
-	echo "make regression testlist_name=pulpino_spi_master_subsystem_verification_regression.list";
+	echo "make regression testlist_name=regression.list";
 	echo "";
 	echo "-----------------------------------------------------------------";
 	echo "-----------------------------------------------------------------";

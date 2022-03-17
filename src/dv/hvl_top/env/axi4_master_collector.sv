@@ -178,7 +178,7 @@ function void axi4_master_collector::write(axi4_master_tx t);
     int k;
     coll_pkt.j = 0;
     
-    k = coll_pkt.dummy_wr_data;
+    k = 31;
 
     mosi_data_local = rg.get();
     `uvm_info(get_type_name(), $sformatf("mosi_data_local = %0h", mosi_data_local),UVM_HIGH)
@@ -191,9 +191,11 @@ function void axi4_master_collector::write(axi4_master_tx t);
     //foreach(mosi_data_local[i]) begin
       if(mosi_data_len_local != 0 && mosi_data_len_local >0) begin
         coll_pkt.mosi_data[i] = mosi_data_local[i];
+    `uvm_info(get_type_name(), $sformatf("collector packet.data(%0d)=%0h",i,mosi_data_local[i]),UVM_HIGH)
         //coll_pkt.data = coll_pkt.data << 1;
-        coll_pkt.data[i] = mosi_data_local[i];
+        coll_pkt.data[i] = mosi_data_local[k];
         mosi_data_len_local = mosi_data_len_local - 1;
+        k--;
       end
     end
     coll_pkt.flag = coll_pkt.flag + 1;
