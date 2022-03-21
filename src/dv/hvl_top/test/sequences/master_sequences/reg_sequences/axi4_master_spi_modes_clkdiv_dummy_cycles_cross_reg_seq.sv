@@ -206,7 +206,7 @@ task axi4_master_spi_modes_clkdiv_dummy_cycles_cross_reg_seq::body();
     bit [15:0] dummy_wr;
     bit [15:0]  dummy_rd;
 
-    dummy_wr = 16'h8;
+    dummy_wr = 16'h0008;
     dummy_rd = 16'h0002;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register dummy_wr  = %0h",dummy_wr) , UVM_LOW)
