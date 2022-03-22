@@ -3,11 +3,12 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: rand_reg_test
-// <Descrsubsystemtion_here>
+// <Description_here>
 //--------------------------------------------------------------------------------------------
 class rand_reg_test extends base_test;
   `uvm_component_utils(rand_reg_test)
 
+  virtual_rand_reg_seq virtual_rand_reg_seq_h;
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -84,7 +85,6 @@ endfunction : start_of_simulation_phase
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task rand_reg_test::run_phase(uvm_phase phase);
-  virtual_rand_reg_seq virtual_rand_reg_seq_h;
   virtual_rand_reg_seq_h = virtual_rand_reg_seq::type_id::create("virtual_rand_reg_seq_h");
 
   `uvm_info(get_type_name(),$sformatf("rand_reg_test"),UVM_LOW);

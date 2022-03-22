@@ -46,7 +46,7 @@ package pulpino_spi_master_subsystem_virtual_seq_pkg;
   `include "virtual_spi_modes_clkdiv_dummy_cycles_cross_reg_seq.sv"
   `include "virtual_spi_modes_transfer_length_interupts_cross_reg_seq.sv"
 
-  //`include "virtual_rand_reg_seq.sv"
+  `include "virtual_rand_reg_seq.sv"
 
 
 endpackage : pulpino_spi_master_subsystem_virtual_seq_pkg

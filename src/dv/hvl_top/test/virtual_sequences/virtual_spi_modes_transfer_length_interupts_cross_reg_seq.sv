@@ -14,7 +14,9 @@ class virtual_spi_modes_transfer_length_interupts_cross_reg_seq extends virtual_
   //Variable : write_key
   //Used to provide access to perform write operation
   // semaphore write_key;
+
   event wr_rd;
+  
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -58,8 +60,8 @@ task virtual_spi_modes_transfer_length_interupts_cross_reg_seq::body();
    axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq_h = axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::type_id::create("axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq_h");
    axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq_h.model = p_sequencer.env_config_h.spi_master_reg_block;
    axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq_h.start(p_sequencer.axi4_master_write_seqr_h);
-    //write_key.put(1);
     wait(wr_rd.triggered);
+    //write_key.put(1);
    `uvm_info("master_vseq",$sformatf("ended master vseq"),UVM_HIGH)
  end
  endtask : body

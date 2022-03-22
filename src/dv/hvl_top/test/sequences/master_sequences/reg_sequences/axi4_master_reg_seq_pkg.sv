@@ -41,7 +41,7 @@ package axi4_reg_seq_pkg;
   `include "axi4_master_spi_modes_clkdiv_dummy_cycles_cross_reg_seq.sv"
   `include "axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq.sv"
 
-  //`include "axi4_master_rand_reg_seq.sv"
+  `include "axi4_master_rand_reg_seq.sv"
 
   `include "axi4_master_negitive_reg_seq.sv"
 

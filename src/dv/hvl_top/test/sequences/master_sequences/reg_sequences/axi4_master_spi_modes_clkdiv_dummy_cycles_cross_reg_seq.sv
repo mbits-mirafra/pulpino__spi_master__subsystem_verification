@@ -87,8 +87,8 @@ task axi4_master_spi_modes_clkdiv_dummy_cycles_cross_reg_seq::body();
     bit [5:0] cmd_length;
     bit [5:0] addr_length;
     bit [15:0] data_length;
-    cmd_length  = 6'h20; //32 
-    addr_length = 6'h20;
+    cmd_length  = 6'h8; //32 
+    addr_length = 6'h8;
     data_length = 16'h20;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register cmd_length  = %0h",cmd_length) , UVM_LOW)
@@ -206,7 +206,7 @@ task axi4_master_spi_modes_clkdiv_dummy_cycles_cross_reg_seq::body();
     bit [15:0] dummy_wr;
     bit [15:0]  dummy_rd;
 
-    dummy_wr = 16'h0008;
+    dummy_wr = 16'h8;
     dummy_rd = 16'h0002;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register dummy_wr  = %0h",dummy_wr) , UVM_LOW)
@@ -364,9 +364,9 @@ task axi4_master_spi_modes_clkdiv_dummy_cycles_cross_reg_seq::body();
     // Setting a value 
     wdata = (wdata & (~ `MASK_STATUS_CS)) | (cs_value << `POS_STATUS_CS);
     // Setting the required bits
-    wdata = wdata | `MASK_STATUS_WR | `MASK_STATUS_QRD; 
+    wdata = wdata | `MASK_STATUS_WR ; 
     // Clearing the required bits
-    wdata = wdata & (~`MASK_STATUS_RD) & (~`MASK_STATUS_QWR) & (~`MASK_STATUS_SRST);
+    wdata = wdata & (~`MASK_STATUS_QRD) & (~`MASK_STATUS_QWR) & (~`MASK_STATUS_SRST) & (~ `MASK_STATUS_RD);
   end
 
   spi_master_reg_block.STATUS.write(.status(status)      ,
