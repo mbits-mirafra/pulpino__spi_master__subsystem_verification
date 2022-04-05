@@ -25,7 +25,7 @@ package pulpino_spi_master_subsystem_virtual_seq_pkg;
   //-------------------------------------------------------
   `include "virtual_base_seq.sv"
   `include "virtual_basic_write_read_reg_seq.sv"
-  `include "virtual_basic_write_seq.sv"
+  `include "virtual_basic_write_reg_seq.sv"
   `include "virtual_basic_read_seq.sv"
   
   // Register virtual sequences
@@ -42,11 +42,13 @@ package pulpino_spi_master_subsystem_virtual_seq_pkg;
   `include "virtual_std_mode_write_8_cmd_8_addr_32_data_length_reg_seq.sv"
   `include "virtual_std_mode_write_8_cmd_16_addr_32_data_length_reg_seq.sv"
   `include "virtual_std_mode_write_even_clkdiv_reg_seq.sv"
+  `include "virtual_std_mode_write_tx_fifo_reg_seq.sv"
 
   `include "virtual_spi_modes_clkdiv_dummy_cycles_cross_reg_seq.sv"
   `include "virtual_spi_modes_transfer_length_interupts_cross_reg_seq.sv"
 
   `include "virtual_rand_reg_seq.sv"
+  `include "virtual_negitive_reg_seq.sv"
 
 
 endpackage : pulpino_spi_master_subsystem_virtual_seq_pkg

@@ -34,7 +34,7 @@ package pulpino_spi_master_subsystem_test_pkg;
 
   `include "base_test.sv"
   `include "basic_write_read_reg_test.sv"
-  `include "basic_write_test.sv"
+  `include "basic_write_reg_test.sv"
   //`include "pulpino_spi_master_subsystem_basic_read_test.sv"
   `include "axi4_simple_reg_test.sv"
   `include "std_mode_write_0_cmd_0_addr_32_data_length_reg_test.sv"
@@ -48,13 +48,14 @@ package pulpino_spi_master_subsystem_test_pkg;
   `include "std_mode_write_0_cmd_32_addr_32_data_length_reg_test.sv"
   `include "std_mode_write_32_cmd_32_addr_32_data_length_reg_test.sv"
   `include "std_mode_write_even_clkdiv_reg_test.sv"
+  `include "std_mode_write_tx_fifo_reg_test.sv"
  
   `include "spi_modes_clkdiv_dummy_cycles_cross_reg_test.sv"
   `include "spi_modes_transfer_length_interupts_cross_reg_test.sv"
 
   `include "rand_reg_test.sv"
 
-  //`include "negitive_reg_test.sv"
+  `include "negitive_reg_test.sv"
 
 endpackage : pulpino_spi_master_subsystem_test_pkg
 
