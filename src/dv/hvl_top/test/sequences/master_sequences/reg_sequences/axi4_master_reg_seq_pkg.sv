@@ -39,6 +39,7 @@ package axi4_reg_seq_pkg;
   `include "axi4_master_std_mode_write_32_cmd_32_addr_32_data_length_reg_seq.sv"
   `include "axi4_master_std_mode_write_even_clkdiv_reg_seq.sv"
   `include "axi4_master_std_mode_write_tx_fifo_reg_seq.sv"
+  `include "axi4_master_std_mode_write_8_dummy_write_reg_seq.sv"
 
   `include "axi4_master_spi_modes_clkdiv_dummy_cycles_cross_reg_seq.sv"
   `include "axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq.sv"
