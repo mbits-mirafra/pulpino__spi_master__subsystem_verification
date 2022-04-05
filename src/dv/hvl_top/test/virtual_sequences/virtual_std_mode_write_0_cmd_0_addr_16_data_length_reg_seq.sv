@@ -8,7 +8,10 @@
 class virtual_std_mode_write_0_cmd_0_addr_16_data_length_reg_seq extends virtual_base_seq;
   `uvm_object_utils(virtual_std_mode_write_0_cmd_0_addr_16_data_length_reg_seq)
 
+  //To instantiate master sequence
   axi4_master_std_mode_write_0_cmd_0_addr_16_data_length_reg_seq axi4_master_std_mode_write_0_cmd_0_addr_16_data_length_reg_seq_h;
+
+  //To instantiate slave sequence
   spi_fd_basic_slave_seq spi_fd_basic_slave_seq_h;
 
   //Variable : read_key

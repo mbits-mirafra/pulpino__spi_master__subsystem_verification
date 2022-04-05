@@ -1,5 +1,5 @@
-`ifndef AXI4_MASTER_NEGITIVE_REG_SEQ_INCLUDE_
-`define AXI4_MASTER_NEGITIVE_REG_SEQ_INCLUDE_
+`ifndef AXI4_MASTER_NEGITIVE_REG_SEQ_INCLUDED_
+`define AXI4_MASTER_NEGITIVE_REG_SEQ_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
 // Class: axi4_master_negitive_reg_seq
@@ -7,7 +7,6 @@
 //--------------------------------------------------------------------------------------------
 class axi4_master_negitive_reg_seq extends axi4_master_reg_base_seq;
   `uvm_object_utils(axi4_master_negitive_reg_seq)
-
     
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -43,6 +42,39 @@ task axi4_master_negitive_reg_seq::body();
 
   spi_reg_map = spi_master_reg_block.get_map_by_name("SPI_MASTER_MAP_ABP_IF");
   
+  //-------------------------------------------------------
+  // CLKDIV Register                                        
+  //-------------------------------------------------------
+  begin
+    bit [7:0] clkdiv_value;
+    clkdiv_value = 8'd1;
+    wdata = 0;
+    wdata = (wdata & (~ `MASK_CLKDIV_CLKDIV)) | (clkdiv_value << `POS_CLKDIV_CLKDIV);
+  end
+
+  //Writing into the Clockdiv Register
+  spi_master_reg_block.CLKDIV.write(.status(status)      ,
+                                    .value(wdata)        ,
+                                    .path(UVM_FRONTDOOR) ,
+                                    .map(spi_reg_map)    ,
+                                    .parent(this)
+                                  );                     
+
+  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
+  spi_master_reg_block.CLKDIV.get_full_name(),wdata),UVM_HIGH)
+
+//  // Reading from the Clockdiv Register
+//  spi_master_reg_block.CLKDIV.read(.status(status)       ,
+//                                    .value(rdata)        ,
+//                                    .path(UVM_FRONTDOOR) ,
+//                                    .map(spi_reg_map)    ,
+//                                    .parent(this)
+//                                  );                     
+//
+//  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
+//  spi_master_reg_block.CLKDIV.get_full_name(),rdata),UVM_HIGH)
+
+
   //-------------------------------------------------------
   // SPI LEN Register                                        
   //-------------------------------------------------------
@@ -94,6 +126,7 @@ task axi4_master_negitive_reg_seq::body();
 //  `uvm_info("SPI_LEN_REG_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
 //  spi_master_reg_block.SPILEN.get_full_name(),rdata),UVM_HIGH)
 
+
   //-------------------------------------------------------
   // SPICMD
   //-------------------------------------------------------
@@ -128,38 +161,7 @@ task axi4_master_negitive_reg_seq::body();
 //  spi_master_reg_block.SPICMD.get_full_name(),rdata),UVM_HIGH)
 
 
-  //-------------------------------------------------------
-  // CLKDIV Register                                        
-  //-------------------------------------------------------
-  begin
-    bit [7:0] clkdiv_value;
-    clkdiv_value = 8'd1;
-    wdata = 0;
-    wdata = (wdata & (~ `MASK_CLKDIV_CLKDIV)) | (clkdiv_value << `POS_CLKDIV_CLKDIV);
-  end
-
-  //Writing into the Clockdiv Register
-  spi_master_reg_block.CLKDIV.write(.status(status)      ,
-                                    .value(wdata)        ,
-                                    .path(UVM_FRONTDOOR) ,
-                                    .map(spi_reg_map)    ,
-                                    .parent(this)
-                                  );                     
-
-  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
-  spi_master_reg_block.CLKDIV.get_full_name(),wdata),UVM_HIGH)
-
-//  // Reading from the Clockdiv Register
-//  spi_master_reg_block.CLKDIV.read(.status(status)       ,
-//                                    .value(rdata)        ,
-//                                    .path(UVM_FRONTDOOR) ,
-//                                    .map(spi_reg_map)    ,
-//                                    .parent(this)
-//                                  );                     
-//
-//  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
-//  spi_master_reg_block.CLKDIV.get_full_name(),rdata),UVM_HIGH)
-
+ 
   //-------------------------------------------------------
   // SPIADDR
   //-------------------------------------------------------
@@ -230,7 +232,7 @@ task axi4_master_negitive_reg_seq::body();
     bit [15:0] dummy_wr;
     bit [15:0]  dummy_rd;
 
-    dummy_wr = 16'h8;
+    dummy_wr = 16'hffff;
     dummy_rd = 16'hffff;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register dummy_wr  = %0h",dummy_wr) , UVM_LOW)
@@ -348,9 +350,9 @@ task axi4_master_negitive_reg_seq::body();
     // Setting a value 
     wdata = (wdata & (~ `MASK_STATUS_CS)) | (cs_value << `POS_STATUS_CS);
     // Setting the required bits
-    wdata = wdata | `MASK_STATUS_WR | `MASK_STATUS_QWR ; 
+    wdata = wdata | `MASK_STATUS_WR ; 
     // Clearing the required bits
-    wdata = wdata & (~`MASK_STATUS_QRD) & (~`MASK_STATUS_RD) & (~ `MASK_STATUS_SRST);
+    wdata = wdata & (~`MASK_STATUS_QRD)& (~`MASK_STATUS_QWR) & (~`MASK_STATUS_RD) & (~ `MASK_STATUS_SRST);
   end
 
   spi_master_reg_block.STATUS.write(.status(status)      ,

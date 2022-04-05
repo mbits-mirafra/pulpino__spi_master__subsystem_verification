@@ -1,29 +1,28 @@
-`ifndef AXI4_MASTER_SPI_MODES_TRANSFER_LENGTH_INTERUPTS_CROSS_REG_SEQ_INCLUDE_
-`define AXI4_MASTER_SPI_MODES_TRANSFER_LENGTH_INTERUPTS_CROSS_REG_SEQ_INCLUDE_
+`ifndef AXI4_MASTER_STD_MODE_WRITE_TX_FIFO_REG_SEQ_INCLUDE_
+`define AXI4_MASTER_STD_MODE_WRITE_TX_FIFO_REG_SEQ_INCLUDE_
 
 //--------------------------------------------------------------------------------------------
-// Class: axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq
+// Class: axi4_master_std_mode_write_tx_fifo_reg_seq
 // Extends the axi4_master_base_seq and randomises the req item
 //--------------------------------------------------------------------------------------------
-class axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq extends axi4_master_reg_base_seq;
-  `uvm_object_utils(axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq)
+class axi4_master_std_mode_write_tx_fifo_reg_seq extends axi4_master_reg_base_seq;
+  `uvm_object_utils(axi4_master_std_mode_write_tx_fifo_reg_seq)
 
    
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
-  extern function new(string name ="axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq");
+  extern function new(string name ="axi4_master_std_mode_write_tx_fifo_reg_seq");
   extern task body();
-
-endclass : axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq
+  endclass : axi4_master_std_mode_write_tx_fifo_reg_seq
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
 //
 // Parameters:
-//  name - axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq
+//  name - axi4_master_std_mode_write_tx_fifo_reg_seq
 //--------------------------------------------------------------------------------------------
-function axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::new(string name="axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq");
+function axi4_master_std_mode_write_tx_fifo_reg_seq::new(string name="axi4_master_std_mode_write_tx_fifo_reg_seq");
   super.new(name);
 endfunction : new
 
@@ -31,8 +30,8 @@ endfunction : new
 // Task : body
 // Creates the req of type master transaction and randomises the req.
 //--------------------------------------------------------------------------------------------
-task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
-// super.body();
+task axi4_master_std_mode_write_tx_fifo_reg_seq::body();
+
  spi_master_apb_if spi_master_reg_block;
   uvm_reg_map spi_reg_map;
 
@@ -45,13 +44,12 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
   spi_reg_map = spi_master_reg_block.get_map_by_name("SPI_MASTER_MAP_ABP_IF");
 
  
-
   //-------------------------------------------------------
   // CLKDIV Register                                        
   //-------------------------------------------------------
   begin
     bit [7:0] clkdiv_value;
-    clkdiv_value = 8'd1;
+    clkdiv_value = 8'd2;
     wdata = 0;
     wdata = (wdata & (~ `MASK_CLKDIV_CLKDIV)) | (clkdiv_value << `POS_CLKDIV_CLKDIV);
   end
@@ -78,7 +76,6 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
 //  `uvm_info("CLOCK_DIV_REG_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
 //  spi_master_reg_block.CLKDIV.get_full_name(),rdata),UVM_HIGH)
 
-
   //-------------------------------------------------------
   // SPI LEN Register                                        
   //-------------------------------------------------------
@@ -91,7 +88,7 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
     bit [15:0] data_length;
     cmd_length  = 6'h8;  
     addr_length = 16'h8;
-    data_length = 16'h20;
+    data_length = 16'h10;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register cmd_length  = %0h",cmd_length) , UVM_LOW)
     `uvm_info(get_type_name(), $sformatf("Write :: Register addr_length = %0h",addr_length), UVM_LOW)
@@ -129,14 +126,15 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
 //
 //  `uvm_info("SPI_LEN_REG_SEQ",$sformatf("READ:: REGISTER : %0s, DATA = 32'h%0h",
 //  spi_master_reg_block.SPILEN.get_full_name(),rdata),UVM_HIGH)
-  
-//-------------------------------------------------------
+
+
+  //-------------------------------------------------------
   // SPICMD
   //-------------------------------------------------------
   
   begin
     bit [31:0] spi_cmd;
-    spi_cmd = 32'hfafd_acda;
+    spi_cmd = 32'hffff_ffff;
     wdata = 0;
     wdata = (wdata & (~ `MASK_SPICMD_SPICMD)) | (spi_cmd << `POS_SPICMD_SPICMD);
   end
@@ -169,7 +167,7 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
   
   begin
     bit [31:0] spi_adr;
-    spi_adr = 32'hacaa_f10f;
+    spi_adr = 32'hf00a_ffff;
     wdata = 0;
     wdata = (wdata & (~ `MASK_SPIADR_SPIADR)) | (spi_adr << `POS_SPIADR_SPIADR);
   end
@@ -197,7 +195,7 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
 //  spi_master_reg_block.SPIADR.get_full_name(),rdata),UVM_HIGH)
 
 
-
+ 
  //-------------------------------------------------------
  // DUMMY REGISTER
  //-------------------------------------------------------
@@ -206,7 +204,7 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
   begin
 
     bit [15:0] dummy_wr;
-    bit [15:0]  dummy_rd;
+    bit [15:0] dummy_rd;
 
     dummy_wr = 16'h0000;
     dummy_rd = 16'h0000;
@@ -218,7 +216,7 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
     wdata = wdata & (~`MASK_SPIDUM_DUMMYWR) & (~`MASK_SPIDUM_DUMMYRD) ;
 
     //setting the required feilds
-    wdata = wdata | (dummy_rd << `POS_SPIDUM_DUMMYRD) | (dummy_wr << `POS_SPIDUM_DUMMYWR);
+    wdata = wdata | (dummy_wr << `POS_SPIDUM_DUMMYWR);
 
   end
 
@@ -251,13 +249,14 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
 
     bit [31:0] tx_fifo;
 
-    tx_fifo = 32'hfabb_f01a;
+    tx_fifo = 32'hffff_ffff;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register tx_fifo = %0h",tx_fifo) , UVM_LOW)
 
     // Clearing the required bits
     wdata = (wdata & (~`MASK_TXFIFO_TX)) | (tx_fifo << `POS_TXFIFO_TX) ;
-  
+ 
+    `uvm_info(get_type_name(), $sformatf("Write :: Register wdata = %0h",wdata) , UVM_LOW)
   end
 
   //Writing into the TX FIFO
@@ -305,10 +304,10 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
 
   // Writing into the register
   begin
-    bit [4:0] thtx_value = 5'h04 ;
-    bit [4:0] rhtx_value = 5'h08 ;
-    bit [4:0] cnttx_value = 5'h04;
-    bit [4:0] cntrx_value = 5'h08;
+    bit [4:0] thtx_value = 5'h1f ;
+    bit [4:0] rhtx_value = 5'h1f ;
+    bit [4:0] cnttx_value = 5'h4;
+    bit [4:0] cntrx_value = 5'h4;
 
     `uvm_info(get_type_name(), $sformatf("Write :: Register thtx_value = %0h",thtx_value), UVM_LOW)
     `uvm_info(get_type_name(), $sformatf("Write :: Register rhtx_value = %0h",rhtx_value), UVM_LOW)
@@ -362,13 +361,14 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
     bit [3:0] cs_value;
     cs_value = SLAVE_0;
     `uvm_info(get_type_name(), $sformatf("Write :: Register cs_value = %0b",cs_value), UVM_LOW)
-
+ 
     // Setting a value 
     wdata = (wdata & (~ `MASK_STATUS_CS)) | (cs_value << `POS_STATUS_CS);
     // Setting the required bits
-    wdata = wdata | `MASK_STATUS_WR ; 
+    wdata = wdata | `MASK_STATUS_WR; 
     // Clearing the required bits
-    wdata = wdata & (~`MASK_STATUS_QRD) & (~`MASK_STATUS_QWR) & (~`MASK_STATUS_SRST) & (~ `MASK_STATUS_RD);
+    wdata = wdata & (~`MASK_STATUS_QRD) & (~`MASK_STATUS_QWR) & (~`MASK_STATUS_RD) & (~ `MASK_STATUS_SRST);
+
   end
 
   spi_master_reg_block.STATUS.write(.status(status)      ,
@@ -380,6 +380,7 @@ task axi4_master_spi_modes_transfer_length_interupts_cross_reg_seq::body();
 
   `uvm_info("STATUS_REG_SEQ",$sformatf("WRITE:: REGISTER : %0s, DATA = 32'h%0h",
   spi_master_reg_block.STATUS.get_full_name(),wdata),UVM_HIGH)
+
 endtask : body
 
 `endif
