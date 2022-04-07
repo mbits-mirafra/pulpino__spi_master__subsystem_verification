@@ -168,7 +168,6 @@ class axi4_master_coverage extends uvm_subscriber #(axi4_master_tx);
       bins READ_DECERR  = {3};
     }
     
-    // ------------------------------------------------------
 
     TRANSFER_TYPE_CP : coverpoint packet.transfer_type {
       option.comment = "transfer type";
@@ -209,15 +208,14 @@ endclass : axi4_master_coverage
 //  name - axi4_master_coverage
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-function axi4_master_coverage::new(string name = "axi4_master_coverage",
-                                 uvm_component parent = null);
+function axi4_master_coverage::new(string name = "axi4_master_coverage",uvm_component parent = null);
   super.new(name, parent);
   axi4_master_covergroup =new();
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: write
-// sampling is done
+// sampling of the coverage is done
 //--------------------------------------------------------------------------------------------
 function void axi4_master_coverage::write(axi4_master_tx t);
  `uvm_info(get_type_name(),$sformatf("Before calling SAMPLE METHOD"),UVM_HIGH);
