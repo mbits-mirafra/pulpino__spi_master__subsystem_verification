@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: axi4_master_collector
-// <Description_here>
+// extended from the uvm_component
 //--------------------------------------------------------------------------------------------
 class axi4_master_collector extends uvm_component;
   `uvm_component_utils(axi4_master_collector)
